@@ -1,6 +1,6 @@
 <project name="ISMS" default="compile">
   <description>
-    An Edge Detection program
+    The Interactive School Management System
   </description>
   
   <target name="clean">
@@ -18,7 +18,7 @@
     <jar destfile="../jar/ISMS.jar" basedir="../classes">
       <manifest>
         <attribute name="Main-Class" 
-                   value="com.uhv.cosc6349.edgeDetection.Main"/>
+                   value="com.uhv.cosc6342.isms.Main"/>
       </manifest>
     </jar>
   </target>
