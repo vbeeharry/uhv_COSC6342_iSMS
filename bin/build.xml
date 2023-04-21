@@ -1,0 +1,29 @@
+<project name="ISMS" default="compile">
+  <description>
+    An Edge Detection program
+  </description>
+  
+  <target name="clean">
+    <delete dir="../classes"/>
+    <delete dir="../jar"/>
+  </target>
+
+  <target name="compile" depends="clean">
+    <mkdir dir="../classes"/>
+    <javac srcdir="../src" destdir="../classes"/>
+  </target>
+
+  <target name="jar" depends="compile">
+    <mkdir dir="../jar" />
+    <jar destfile="../jar/ISMS.jar" basedir="../classes">
+      <manifest>
+        <attribute name="Main-Class" 
+                   value="com.uhv.cosc6349.edgeDetection.Main"/>
+      </manifest>
+    </jar>
+  </target>
+
+  <target name="run" depends="jar">
+    <java jar="../jar/ISMS.jar" fork="true"/>
+  </target>
+</project>
