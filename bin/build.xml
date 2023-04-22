@@ -1,4 +1,4 @@
-<project name="ISMS" default="compile">
+<project name="ISMS" default="jar">
   <description>
     The Interactive School Management System
   </description>
