@@ -1,26 +1,33 @@
 /**
  * CsvReader.java
  */
+package com.uhv.cosc6342.isms.utils;
 
-package com.uhv.cosc6342.isms.util;
+import com.uhv.cosc6342.isms.users.Admin;
+import com.uhv.cosc6342.isms.users.Professor;
+import com.uhv.cosc6342.isms.users.Student;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Class to read csv files
  */
-public class CsvReader {
+public class CsvReaderUser {
 
     private String fileName;
+    private List userList;
     
     /**
      * Constructor
      */
-    public CsvReader(String fileName) {
+    public CsvReaderUser(String fileName) {
         this.fileName = fileName;
+        userList = new ArrayList();
     }
 
     /**
@@ -36,10 +43,16 @@ public class CsvReader {
             
             while ((line = br.readLine()) != null) {
                 tempArr = line.split(",");
-                for (String tempStr : tempArr) {
-                    System.out.println(tempStr + " ");
+                String role = tempArr[4];
+                if (role.equalsIgnoreCase("Admin")) {
+                    userList.add(new Admin(tempArr));
                 }
-                System.out.println();
+                else if (role.equalsIgnoreCase("Professor")) {
+                    userList.add(new Professor(tempArr));
+                } 
+                else if (role.equalsIgnoreCase("Student")) {
+                    userList.add(new Student(tempArr));
+                }
             }
             br.close();
         }

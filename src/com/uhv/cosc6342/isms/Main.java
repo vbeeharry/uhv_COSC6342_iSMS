@@ -1,7 +1,8 @@
 package com.uhv.cosc6342.isms;
 
 import com.uhv.cosc6342.isms.ui.Entry;
-import com.uhv.cosc6342.isms.util.CsvReader;;
+import com.uhv.cosc6342.isms.utils.CsvReaderUser;
+import com.uhv.cosc6342.isms.utils.Debug;
 
 /**
  * For the iSMS project.
@@ -9,7 +10,8 @@ import com.uhv.cosc6342.isms.util.CsvReader;;
 public class Main {
 
     private Entry entry;
-    private CsvReader cr;
+    private CsvReaderUser cr;
+    private Debug debug;
     
     public static void main(String[] args) {
         Main m = new Main();
@@ -22,8 +24,10 @@ public class Main {
      * Init
      */
     private void init() {
+        debug = Debug.getInstance();
+        debug.setEnabled();
         entry = new Entry();
-        cr = new CsvReader("records.csv");
+        cr = new CsvReaderUser("records.csv");
     }
 
     /**
