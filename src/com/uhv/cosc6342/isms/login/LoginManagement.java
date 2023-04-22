@@ -19,7 +19,6 @@ public class LoginManagement {
 
     private List userList;
     private boolean authorized = false;
-    private String role = null;
 
     /**
      * Private constructor
@@ -38,17 +37,15 @@ public class LoginManagement {
     /**
      * Check if the user is authorized
      */
-    public boolean isAuthorized(String userId, String password, String role) {
+    public boolean isAuthorized(String userId, String password) {
         for (Iterator iter = userList.iterator(); iter.hasNext();) {
             User temp = (User) iter.next();
-            if (temp.getUserId().equals(userId) && temp.getPassword().equals(password)
-                && temp.getRole().equals(role)) {
-                    authorized = true;
-                    this.role = role;
-                    sharedObject.putObject("activeUser", temp);
-                }
+            if (temp.getUserId().equals(userId) && temp.getPassword().equals(password)) {
+                authorized = true;
+                sharedObject.putObject("activeUser", temp);
+            }
         }
-        return false;
+        return authorized;
     }
 
     /**

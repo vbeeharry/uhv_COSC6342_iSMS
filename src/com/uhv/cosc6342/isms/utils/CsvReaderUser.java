@@ -45,7 +45,7 @@ public class CsvReaderUser {
             String line = " ";
             String [] tempArr;
             
-            debug.log("##### Records lookup:");
+            debug.log("##### Records lookup: #####");
             while ((line = br.readLine()) != null) {
                 tempArr = line.split(",");
                 String role = tempArr[5];
@@ -61,6 +61,7 @@ public class CsvReaderUser {
             }
             br.close();
             sharedObject.putObject("userList", userList);
+            System.out.println("\n\n\n\n\n");
         }
         catch (IOException ioe) {
             ioe.printStackTrace();
