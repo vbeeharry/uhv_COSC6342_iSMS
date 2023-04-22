@@ -1,33 +1,39 @@
 package com.uhv.cosc6342.isms;
 
+import com.uhv.cosc6342.isms.ui.Entry;
+
 /**
  * For the iSMS project.
  */
 public class Main {
 
-    private int a;
-    private int b;
-
+    private Entry entry;
+    
     public static void main(String[] args) {
-        System.out.println("Hello World");
-
         Main m = new Main();
         m.init();
-        int s = m.sum();
-        System.out.println("The sum is: " + s);
+        m.display();
+        m.execute();
     }
 
+    /**
+     * Init
+     */
     private void init() {
-        a = 10;
-        b = 30;
+        entry = new Entry();
     }
 
-    private int sum() {
-        int total = a + b;
-        for (int i = 0; i < total; i++) {
-            System.out.println(total);
-        }
-        
-        return total;
+    /**
+     * Display
+     */
+    private void display() {
+        entry.display();
+    }
+
+    /**
+     * Execute
+     */
+    private void execute() {
+        while (true) { }
     }
 }
