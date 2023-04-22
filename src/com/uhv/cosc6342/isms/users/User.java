@@ -15,6 +15,7 @@ public abstract class User {
     private String firstName;
     private String lastName;
     private String email;
+    private String userId;
     private String password;
     private String role;
 
@@ -24,17 +25,18 @@ public abstract class User {
      * Constructor
      */
     public User (String firstName, String lastName, 
-                String email, String password, String role) {
+                String email, String userId, String password, String role) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+        this.userId = userId;
         this.password = password;
         this.role = role;
         debug = Debug.getInstance();
     }
 
     public User (String[] temp) {
-        this(temp[0], temp[1], temp[2], temp[3], temp[4]);
+        this(temp[0], temp[1], temp[2], temp[3], temp[4], temp[5]);
     }
 
     /**
@@ -63,6 +65,13 @@ public abstract class User {
      */
     public String getPassword() {
         return password;
+    }
+
+    /**
+     * Getter for the userId
+     */
+    public String getUserId() {
+        return userId;
     }
 
     /**

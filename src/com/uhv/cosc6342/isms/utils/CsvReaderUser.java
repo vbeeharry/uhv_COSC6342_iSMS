@@ -6,6 +6,8 @@ package com.uhv.cosc6342.isms.utils;
 import com.uhv.cosc6342.isms.users.Admin;
 import com.uhv.cosc6342.isms.users.Professor;
 import com.uhv.cosc6342.isms.users.Student;
+import com.uhv.cosc6342.isms.utils.Debug;
+import com.uhv.cosc6342.isms.utils.SharedObject;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -21,6 +23,8 @@ public class CsvReaderUser {
 
     private String fileName;
     private List userList;
+    private Debug debug = Debug.getInstance();
+    private SharedObject sharedObject = SharedObject.getInstance();
     
     /**
      * Constructor
@@ -41,9 +45,10 @@ public class CsvReaderUser {
             String line = " ";
             String [] tempArr;
             
+            debug.log("##### Records lookup:");
             while ((line = br.readLine()) != null) {
                 tempArr = line.split(",");
-                String role = tempArr[4];
+                String role = tempArr[5];
                 if (role.equalsIgnoreCase("Admin")) {
                     userList.add(new Admin(tempArr));
                 }
@@ -55,6 +60,7 @@ public class CsvReaderUser {
                 }
             }
             br.close();
+            sharedObject.putObject("userList", userList);
         }
         catch (IOException ioe) {
             ioe.printStackTrace();
