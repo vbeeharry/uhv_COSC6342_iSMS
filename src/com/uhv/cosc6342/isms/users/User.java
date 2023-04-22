@@ -80,4 +80,11 @@ public abstract class User {
     public String getRole() {
         return role;
     }
+
+    /**
+     * ToString
+     */
+    public String toString() {
+        return (firstName + " " + lastName + "." + " Role : " + role);
+    }
 }

@@ -1,5 +1,9 @@
 package com.uhv.cosc6342.isms.ui;
 
+import com.uhv.cosc6342.isms.login.LoginManagement;
+import com.uhv.cosc6342.isms.users.User;
+import com.uhv.cosc6342.isms.utils.SharedObject;
+
 /**
  * This is the UI Manager
  */
@@ -9,6 +13,7 @@ public class UserInterface {
 
     private UIInterface activeUI;
     private EntryPage entryPage;
+    private SignInPage signInPage;
 
     /**
      * Constructor
@@ -22,6 +27,7 @@ public class UserInterface {
      */
     private void init() { 
         entryPage = new EntryPage();
+        signInPage = new SignInPage();
     
         welcome(entryPage);
     }
@@ -39,10 +45,31 @@ public class UserInterface {
             break;
 
             case 1:
+            signIn(signInPage);
             break;
 
             default:
             wrongEntry();
+            welcome(entryPage);
+        }
+    }
+
+    /**
+     * Sign in
+     */
+    private void signIn(UIInterface ui) {
+        ui.displayTitle();
+        String userId = ui.getUserId();
+        String password = ui.getPassword();
+        
+        if (LoginManagement.getInstance().isAuthorized(userId, password)) {
+            System.out.println("User is authorized");
+            User activeUser = (User) SharedObject.getInstance().getObject("activeUser");
+            String role = activeUser.getRole();
+            System.out.println("User info: " + activeUser);
+        }
+        else {
+            System.out.println("User is not registered.\n");
             welcome(entryPage);
         }
     }
