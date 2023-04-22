@@ -63,13 +63,13 @@ public class UserInterface {
         String password = ui.getPassword();
         
         if (LoginManagement.getInstance().isAuthorized(userId, password)) {
-            System.out.println("User is authorized");
+            System.out.println("\nUser is authorized");
             User activeUser = (User) SharedObject.getInstance().getObject("activeUser");
             String role = activeUser.getRole();
             System.out.println("User info: " + activeUser);
         }
         else {
-            System.out.println("User is not registered.\n");
+            System.out.println("\nUser is not registered.\n");
             welcome(entryPage);
         }
     }
