@@ -5,7 +5,7 @@
 package com.uhv.cosc6342.isms.login;
 
 import com.uhv.cosc6342.isms.users.User;
-import com.uhv.cosc6342.isms.utils.SharedObject;
+import com.uhv.cosc6342.isms.utils.CsvReaderUser;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -15,10 +15,10 @@ public class LoginManagement {
 
     private static LoginManagement lm = null;
 
-    private SharedObject sharedObject = SharedObject.getInstance();
 
     private List userList;
     private boolean authorized = false;
+    private User activeUser;
 
     /**
      * Private constructor
@@ -31,7 +31,7 @@ public class LoginManagement {
      * Init
      */
     private void init() {
-        userList = (ArrayList) sharedObject.getObject("userList");
+        userList = CsvReaderUser.getInstance().getUserList();
     }
 
     /**
@@ -42,10 +42,17 @@ public class LoginManagement {
             User temp = (User) iter.next();
             if (temp.getUserId().equals(userId) && temp.getPassword().equals(password)) {
                 authorized = true;
-                sharedObject.putObject("activeUser", temp);
+                activeUser = temp;
             }
         }
         return authorized;
+    }
+
+    /**
+     * Getter for active user
+     */
+    public User getActiveUser() {
+        return activeUser;
     }
 
     /**

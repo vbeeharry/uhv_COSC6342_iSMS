@@ -1,10 +1,13 @@
 package com.uhv.cosc6342.isms.ui;
 
-import java.io.Console;
+import com.uhv.cosc6342.isms.login.LoginManagement;
+
 import java.util.Scanner;
 
 public abstract class UIInterface {
     
+    protected LoginManagement lm;
+
     protected String title;
     protected String[] options;
 
@@ -12,6 +15,7 @@ public abstract class UIInterface {
      * Constructor
      */
     public UIInterface () {
+        lm = LoginManagement.getInstance();
         init();
     }
 
@@ -21,7 +25,7 @@ public abstract class UIInterface {
     protected abstract void init();
 
     public void displayTitle() {
-        System.out.println("***** " + title + " *****");
+        System.out.println("\n***** " + title + " *****");
     }
 
     public void displayOptions() {

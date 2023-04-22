@@ -23,7 +23,7 @@ public class Main {
      */
     private void init() {
         debug = Debug.getInstance(); debug.setEnabled();
-        cr = new CsvReaderUser("records.csv"); cr.readAll();
+        cr = CsvReaderUser.getInstance("records.csv"); cr.readAll();
         ui = UserInterface.getInstance();
     }
 }

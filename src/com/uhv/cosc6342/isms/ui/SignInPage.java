@@ -4,8 +4,6 @@
 
 package com.uhv.cosc6342.isms.ui;
 
-import java.util.Scanner;
-
 public class SignInPage extends UIInterface {
     
     /**
