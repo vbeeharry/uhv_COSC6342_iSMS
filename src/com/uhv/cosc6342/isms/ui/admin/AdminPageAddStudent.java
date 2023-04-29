@@ -7,11 +7,14 @@ import java.util.Scanner;
 
 public class AdminPageAddStudent extends UIInterface {    
 
+    private String[] temp;
+
     /**
      * Init
      */
     protected void init() {
         title = "Admin - Add a Student";
+        temp = new String[6];
     }
 
     /**
@@ -22,19 +25,17 @@ public class AdminPageAddStudent extends UIInterface {
 
         Scanner in = new Scanner(System.in);
         System.out.println("Enter First Name: ");
-        String firstName = in.next();
+        temp[0] = in.next();
         System.out.println("Enter Last Name: ");
-        String lastName = in.next();
+        temp[1] = in.next();
         System.out.println("Enter Email: ");
-        String email = in.next();
+        temp[2] = in.next();
         System.out.println("User ID: " );
-        String id = in.next();
+        temp[3] = in.next();
         System.out.println("Enter password: ");
-        String password = in.next();
-        String role = "student";
+        temp[4] = in.next();
+        temp[5] = "student";
 
-        Student newStudent = new Student(new String[] {
-            firstName, lastName, email, id, password, role });
-        dm.addStudent(newStudent);
+        dm.addStudent(temp);
     }
 }

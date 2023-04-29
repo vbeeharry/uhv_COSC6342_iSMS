@@ -6,6 +6,7 @@ import com.uhv.cosc6342.isms.users.Student;
 import com.uhv.cosc6342.isms.users.User;
 import com.uhv.cosc6342.isms.utils.Constants;
 import com.uhv.cosc6342.isms.utils.CsvReaderUser;
+import com.uhv.cosc6342.isms.utils.CsvReaderStudent;
 import com.uhv.cosc6342.isms.utils.Debug;
 
 import java.io.IOException;
@@ -13,12 +14,15 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.util.Iterator;
+import java.util.List;
 
 public class DatabaseManager implements Constants {
 
     public static DatabaseManager dm = null;
 
-    private CsvReaderUser cr;
+    private CsvReaderUser cru;
+    private CsvReaderStudent crs;
+
     private Debug debug;
 
     /**
@@ -33,7 +37,7 @@ public class DatabaseManager implements Constants {
      */
     public void init() {
         debug = Debug.getInstance();
-        cr = CsvReaderUser.getInstance(USERS_FILE); cr.readAll();
+        cru = CsvReaderUser.getInstance(USERS_FILE); cru.readAll();
 
         try {
             debug.log("Checking Admins File");
@@ -78,7 +82,7 @@ public class DatabaseManager implements Constants {
             FileWriter fw = new FileWriter(ADMINS_FILE);
             BufferedWriter bw = new BufferedWriter(fw);
             
-            for (Iterator iter = cr.getAdminList().iterator(); iter.hasNext();) {
+            for (Iterator iter = cru.getAdminList().iterator(); iter.hasNext();) {
                 Admin temp = (Admin) iter.next();
                 bw.write(temp.getFirstName() + "," 
                     + temp.getLastName() + ","
@@ -101,7 +105,7 @@ public class DatabaseManager implements Constants {
             FileWriter fw = new FileWriter(PROFESSORS_FILE);
             BufferedWriter bw = new BufferedWriter(fw);
             
-            for (Iterator iter = cr.getProfessorList().iterator(); iter.hasNext();) {
+            for (Iterator iter = cru.getProfessorList().iterator(); iter.hasNext();) {
                 Professor temp = (Professor) iter.next();
                 bw.write(temp.getFirstName() + "," 
                     + temp.getLastName() + ","
@@ -124,7 +128,7 @@ public class DatabaseManager implements Constants {
             FileWriter fw = new FileWriter(STUDENTS_FILE);
             BufferedWriter bw = new BufferedWriter(fw);
             
-            for (Iterator iter = cr.getStudentList().iterator(); iter.hasNext();) {
+            for (Iterator iter = cru.getStudentList().iterator(); iter.hasNext();) {
                 Student temp = (Student) iter.next();
                 bw.write(temp.getFirstName() + "," 
                     + temp.getLastName() + ","
@@ -182,10 +186,36 @@ public class DatabaseManager implements Constants {
     /**
      * Add a student to the school database
      */
-    public void addStudent(Student student) {
+    public void addStudent(String[] temp) {
         debug.log("Adding a new student");
-        writeToUserFile(student, "student");
-        writeToStudentFile(student);
+
+        boolean okToAdd = checkIfIdExists(cru, temp);
+        if (okToAdd) {
+            Student tempStudent = new Student(temp);
+            writeToUserFile(tempStudent, "student");
+            writeToStudentFile(tempStudent);
+        }
+        else {
+            System.out.println("Unable to add Student. User ID Already exists.");
+        }
+    }
+
+    /**
+     * Check if user id already exists
+     */
+    private boolean checkIfIdExists(CsvReaderUser cru, String[] temp) {
+        boolean result = true;
+        List user = cru.getUserList();
+
+        for (Iterator iter = user.iterator(); iter.hasNext();) {
+            User tempUser = (User) iter.next();
+            if (tempUser.getUserId().equals(temp[3])) {
+                result = false;
+                break;
+            }
+        }
+
+        return result;
     }
 
     /**

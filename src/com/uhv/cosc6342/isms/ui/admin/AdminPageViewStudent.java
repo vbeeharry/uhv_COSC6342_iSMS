@@ -24,7 +24,7 @@ public class AdminPageViewStudent extends UIInterface {
         System.out.println("\n");
         displayTitle();
 
-        System.out.println("Enter Student User ID");
+        System.out.println("Enter Student User ID:");
         Scanner in = new Scanner(System.in);
         String id = in.next();
 
