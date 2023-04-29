@@ -17,4 +17,9 @@
         debug.log("New Professor created: " + getFirstName()
             + " " + getLastName());
     }
+
+    /**
+     * InitMe
+     */
+    protected void initMe() { }
   }

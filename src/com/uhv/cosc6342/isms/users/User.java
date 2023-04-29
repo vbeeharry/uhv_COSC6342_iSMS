@@ -12,10 +12,10 @@ import com.uhv.cosc6342.isms.utils.Debug;
  */
 public abstract class User {
 
-    private String firstName;
-    private String lastName;
-    private String email;
-    private String userId;
+    protected String firstName;
+    protected String lastName;
+    protected String email;
+    protected String userId;
     private String password;
     private String role;
 
@@ -33,11 +33,24 @@ public abstract class User {
         this.password = password;
         this.role = role;
         debug = Debug.getInstance();
+        init();
     }
 
     public User (String[] temp) {
         this(temp[0], temp[1], temp[2], temp[3], temp[4], temp[5]);
     }
+
+    /**
+     * Init
+     */
+    private void init() { 
+        initMe();
+    }
+
+    /**
+     * InitMe()
+     */
+    protected abstract void initMe();
 
     /**
      * Getter for firstName

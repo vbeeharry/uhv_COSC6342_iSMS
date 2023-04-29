@@ -18,4 +18,9 @@
         debug.log("New Admin created: " + getFirstName()
             + " " + getLastName());
     }
+
+    /**
+     * InitMe
+     */
+    protected void initMe() { }
   }

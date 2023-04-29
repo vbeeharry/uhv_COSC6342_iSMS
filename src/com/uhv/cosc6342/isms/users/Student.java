@@ -5,10 +5,12 @@
  package com.uhv.cosc6342.isms.users;
 
  /**
-  * Admin class
+  * Student class
   */
   public class Student extends User {
 
+    private float gpa = Float.NaN;
+    
     /**
      * Constructor
      */
@@ -16,5 +18,18 @@
         super(temp);
         debug.log("New Student created: " + getFirstName()
             + " " + getLastName());
+    }
+
+    /**
+     * InitMe()
+     */
+    @Override
+    protected void initMe() { }
+
+    /**
+     * Get GPA
+     */
+    public float getGpa() {
+      return gpa;
     }
   }
