@@ -4,11 +4,10 @@ import com.uhv.cosc6342.isms.ui.UIInterface;
 import com.uhv.cosc6342.isms.utils.Constants;
 import com.uhv.cosc6342.isms.utils.CsvReaderStudent;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class AdminPageViewStudentProfiles extends UIInterface {
+public class AdminPageViewStudents extends UIInterface {
     
     private CsvReaderStudent crs;
 

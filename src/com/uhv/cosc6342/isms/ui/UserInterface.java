@@ -19,7 +19,7 @@ public class UserInterface {
     private SignInPage signInPage;
     private AdminPage0 adminPage0;
     private AdminPage1 adminPage1;
-    private AdminPageViewStudentProfiles adminPageViewStudentProfiles;
+    private AdminPageViewStudents adminPageViewStudents;
 
     /**
      * Constructor
@@ -38,7 +38,7 @@ public class UserInterface {
         signInPage = new SignInPage();
         adminPage0 = new AdminPage0();
         adminPage1 = new AdminPage1();
-        adminPageViewStudentProfiles = new AdminPageViewStudentProfiles();
+        adminPageViewStudents = new AdminPageViewStudents();
     }
 
     /**
@@ -146,7 +146,7 @@ public class UserInterface {
      * adminPageViewStudentProfiles
      */
     private void adminPageViewStudentProfiles() {
-        adminPageViewStudentProfiles.viewStudents();
+        adminPageViewStudents.viewStudents();
     }
 
     private void wrongEntry() {
