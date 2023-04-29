@@ -1,22 +1,40 @@
 package com.uhv.cosc6342.isms.ui;
 
+import com.uhv.cosc6342.isms.database.DatabaseManager;
 import com.uhv.cosc6342.isms.login.LoginManagement;
+import com.uhv.cosc6342.isms.utils.Constants;
+import com.uhv.cosc6342.isms.utils.CsvReaderUser;
+import com.uhv.cosc6342.isms.utils.CsvReaderStudent;
 
 import java.util.Scanner;
 
 public abstract class UIInterface {
     
     protected LoginManagement lm;
+    protected DatabaseManager dm;
 
     protected String title;
     protected String[] options;
+
+    protected CsvReaderUser cru;
+    protected CsvReaderStudent crs;
 
     /**
      * Constructor
      */
     public UIInterface () {
-        lm = LoginManagement.getInstance();
+        initMe();
         init();
+    }
+
+    /**
+     * initMe
+     */
+    private void initMe() {
+        lm = LoginManagement.getInstance();
+        dm = DatabaseManager.getInstance();
+        crs = CsvReaderStudent.getInstance(Constants.STUDENTS_FILE);
+        cru = CsvReaderUser.getInstance(Constants.USERS_FILE);
     }
 
     /**

@@ -3,6 +3,7 @@ package com.uhv.cosc6342.isms.database;
 import com.uhv.cosc6342.isms.users.Admin;
 import com.uhv.cosc6342.isms.users.Professor;
 import com.uhv.cosc6342.isms.users.Student;
+import com.uhv.cosc6342.isms.users.User;
 import com.uhv.cosc6342.isms.utils.Constants;
 import com.uhv.cosc6342.isms.utils.CsvReaderUser;
 import com.uhv.cosc6342.isms.utils.Debug;
@@ -32,7 +33,7 @@ public class DatabaseManager implements Constants {
      */
     public void init() {
         debug = Debug.getInstance();
-        cr = CsvReaderUser.getInstance(USER_FILE); cr.readAll();
+        cr = CsvReaderUser.getInstance(USERS_FILE); cr.readAll();
 
         try {
             debug.log("Checking Admins File");
@@ -137,6 +138,54 @@ public class DatabaseManager implements Constants {
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }
+    }
+
+    /**
+     * Write to user file
+     */
+    private void writeToUserFile(User user, String role) {
+        try {
+            FileWriter fw = new FileWriter(USERS_FILE, true);
+            BufferedWriter bw = new BufferedWriter(fw);
+            bw.write(user.getFirstName() + "," 
+                    + user.getLastName() + ","
+                    + user.getEmail() + ","
+                    + user.getUserId() + ","
+                    + user.getPassword() + ","
+                    + role + "\n");
+            bw.flush();
+            bw.close();
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
+    }
+
+    /**
+     * Write to student file
+     */
+    private void writeToStudentFile(Student student) {
+        try {
+            FileWriter fw = new FileWriter(STUDENTS_FILE, true);
+            BufferedWriter bw = new BufferedWriter(fw);
+            bw.write(student.getFirstName() + "," 
+                    + student.getLastName() + ","
+                    + student.getEmail() + ","
+                    + student.getUserId() + ","
+                    + student.getGpa() + "\n");
+            bw.flush();
+            bw.close();
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
+    }
+
+    /**
+     * Add a student to the school database
+     */
+    public void addStudent(Student student) {
+        debug.log("Adding a new student");
+        writeToUserFile(student, "student");
+        writeToStudentFile(student);
     }
 
     /**

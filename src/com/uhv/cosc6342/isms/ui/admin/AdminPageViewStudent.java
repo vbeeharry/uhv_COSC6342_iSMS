@@ -1,8 +1,6 @@
 package com.uhv.cosc6342.isms.ui.admin;
 
 import com.uhv.cosc6342.isms.ui.UIInterface;
-import com.uhv.cosc6342.isms.utils.Constants;
-import com.uhv.cosc6342.isms.utils.CsvReaderStudent;
 
 import java.util.Iterator;
 import java.util.List;
@@ -10,14 +8,11 @@ import java.util.Scanner;
 
 public class AdminPageViewStudent extends UIInterface {
     
-    private CsvReaderStudent crs;
-
     /**
      * Init
      */
     protected void init() {
         title = "Admin - View Student Profile";
-        crs = CsvReaderStudent.getInstance(Constants.STUDENTS_FILE);
     }
 
     /**
