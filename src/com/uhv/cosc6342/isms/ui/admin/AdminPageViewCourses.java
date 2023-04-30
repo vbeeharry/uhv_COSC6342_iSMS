@@ -31,6 +31,10 @@ public class AdminPageViewCourses extends UIInterface {
             System.out.println("Total Seats " + course.getNumOfSeatsTotal());
             System.out.println("Seats Taken: " + course.getNumOfSeatsTaken());
             System.out.println("Seats Available: " + course.getNumOfSeatsAvailable());
+            System.out.println("Instruction Mode: " + course.getInstructionMode());
+            System.out.println("Room: " + course.getRoom());
+            System.out.println("Start Date: " + course.getStartDate());
+            System.out.println("End Date: " + course.getEndDate());
             System.out.println("\n\n");
         }
     }

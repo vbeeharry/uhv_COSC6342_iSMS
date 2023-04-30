@@ -15,6 +15,10 @@ public class Course {
     private int numOfSeatsTotal;
     private int numOfSeatsTaken;
     private int numOfSeatsAvailable;
+    private String instructionMode;
+    private String room;
+    private String startDate;
+    private String endDate;
     
     /**
      * Constructor
@@ -31,6 +35,10 @@ public class Course {
         this.numOfSeatsTotal = Integer.parseInt(temp[3]);
         this.numOfSeatsTaken = Integer.parseInt(temp[4]);
         this.numOfSeatsAvailable = numOfSeatsTotal - numOfSeatsTaken;
+        this.instructionMode = temp[5];
+        this.room = temp[6];
+        this.startDate = temp[7];
+        this.endDate = temp[8];
     }
 
     public String getName() {
@@ -53,7 +61,23 @@ public class Course {
         numOfSeatsAvailable = numOfSeatsTotal - numOfSeatsTaken;
         return numOfSeatsAvailable;
     }
+
+    public String getInstructionMode() {
+        return instructionMode;
+    }
     
+    public String getRoom() {
+        return room;
+    }
+
+    public String getStartDate() {
+        return startDate;
+    }
+
+    public String getEndDate() {
+        return endDate;
+    }
+
     public String getId() {
         return id;
     }
