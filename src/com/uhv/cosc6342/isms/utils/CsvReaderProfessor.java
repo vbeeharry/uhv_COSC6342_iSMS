@@ -67,7 +67,7 @@ public class CsvReaderProfessor {
      * Get professor by id
      */
     public String getProfessorId(String id) {
-        String pId = "Not assigned";
+        String pId = "NotAssigned";
         readAll();
         
         for (Iterator iter = userList.iterator(); iter.hasNext();) {

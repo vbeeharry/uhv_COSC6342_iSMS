@@ -470,16 +470,21 @@ public class DatabaseManager implements Constants {
         try {
             FileWriter fw = new FileWriter(COURSES_FILE, true);
             BufferedWriter bw = new BufferedWriter(fw);
-            bw.write(course.getId() + ","
-                    + course.getName() + ","
-                    + course.getDay() + ","
-                    + course.getNumOfSeatsTotal() + ","
-                    + course.getNumOfSeatsTaken() + ","
-                    + course.getInstructionMode() + ","
-                    + course.getRoom() + ","
-                    + course.getStartDate() + ","
-                    + course.getEndDate() + "\n");
-
+            String str = course.getId() + ","
+                + course.getName() + ","
+                + course.getDay() + ","
+                + course.getNumOfSeatsTotal() + ","
+                + course.getNumOfSeatsTaken() + ","
+                + course.getInstructionMode() + ","
+                + course.getRoom() + ","
+                + course.getStartDate() + ","
+                + course.getEndDate() + ",";
+            
+            String professorId = course.getProfessorId();
+            String pId = crp.getProfessorId(professorId);
+            str = str + pId + "\n";
+            
+            bw.write(str);
             bw.flush();
             bw.close();
         } catch (IOException ioe) {
