@@ -278,6 +278,7 @@ public class DatabaseManager implements Constants {
         }
 
         cw.writeAllStudents(STUDENTS_FILE, temp);
+        debug.log("Student Profile has been deleted");
     }
 
     /**
@@ -312,7 +313,6 @@ public class DatabaseManager implements Constants {
         }
 
         cw.writeAllUsers(USERS_FILE, temp);
-        debug.log("Student deleted - User ID: " + id);
     }
 
     /**
@@ -349,7 +349,62 @@ public class DatabaseManager implements Constants {
             ioe.printStackTrace();
         }
     }
+    
+    /**
+     * Delete a professor from the school database
+     */
+    public void deleteProfessor(String id) {
+        int professorIndex = okToDeleteProfessor(id);
 
+        if (professorIndex != -1) {
+            deleteFromProfessorsFile(professorIndex);     
+            deleteFromUsersFile(id);     
+        }
+    }
+
+    /**
+     * Check if ok to delete
+     */
+    private int okToDeleteProfessor(String id) {
+        int result = -1;
+        List professor = crp.getUserList();
+
+        int i = 0;
+        for (Iterator iter = professor.iterator(); iter.hasNext();) {
+            String[] tempProfessor = (String[]) iter.next();
+            if (tempProfessor[3].equals(id)) {
+                result = i;
+                break;
+            }
+            i++;
+        }
+
+        return result;
+    }
+
+    /**
+     * Delete frrom professor file
+     */
+    private void deleteFromProfessorsFile(int index) {
+        List professors = crp.getUserList();
+        professors.remove(index);
+
+        List temp = professors;
+
+        try {
+            File file = new File(PROFESSORS_FILE);
+            FileWriter fw = new FileWriter(file, false);
+            PrintWriter pw = new PrintWriter(fw, false);
+            pw.flush();
+            pw.close();
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
+
+        cw.writeAllProfessors(PROFESSORS_FILE, temp);
+        debug.log("Professor Profile has been deleted");
+    }
+    
     /**
      * Singleton instance
      */

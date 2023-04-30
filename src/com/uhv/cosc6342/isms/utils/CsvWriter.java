@@ -65,6 +65,28 @@ public class CsvWriter {
     }
 
     /**
+     * Write to a csv file
+     */
+    public void writeAllProfessors(String fileName, List data) {
+        try {
+            File file = new File(fileName);
+            FileWriter fw = new FileWriter(file);
+            BufferedWriter bw = new BufferedWriter(fw);
+
+            for (Iterator iter = data.iterator(); iter.hasNext();) {
+                String[] temp = (String[]) iter.next();
+                bw.write(temp[0] + "," + temp[1] + "," + temp[2] + ","
+                    + temp[3] + "\n");
+            }
+
+            bw.flush();
+            bw.close();
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
+    }
+
+    /**
      * Singleton Instance
      */
     public static CsvWriter getInstance() {
