@@ -28,9 +28,11 @@ public class AdminPageViewStudent extends UIInterface {
         Scanner in = new Scanner(System.in);
         String id = in.next();
 
+        boolean studentFound = false;
         for (Iterator iter = temp.iterator(); iter.hasNext();) {
             String[] str = (String[]) iter.next();
             if (str[3].equals(id)) {
+                studentFound = true;
                 System.out.println("First Name: " + str[0]);
                 System.out.println("Last Name: " + str[1]);
                 System.out.println("Email: " + str[2]);
@@ -39,6 +41,10 @@ public class AdminPageViewStudent extends UIInterface {
                 System.out.println("\n\n");
                 break;
             }
+        }
+
+        if (!studentFound) {
+            debug.log("Student ID not found");
         }
     }
 }

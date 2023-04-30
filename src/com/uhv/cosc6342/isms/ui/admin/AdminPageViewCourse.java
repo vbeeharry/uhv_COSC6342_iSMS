@@ -29,9 +29,11 @@ public class AdminPageViewCourse extends UIInterface {
         Scanner in = new Scanner(System.in);
         String id = in.next();
 
+        boolean courseFound = false;
         for (Iterator iter = temp.iterator(); iter.hasNext();) {
             Course course = (Course) iter.next();
             if (course.getId().equals(id)) {
+                courseFound = true;
                 System.out.println("Course ID: " + course.getId());
                 System.out.println("Name: " + course.getName());
                 System.out.println("Day: " + course.getDay());
@@ -45,6 +47,10 @@ public class AdminPageViewCourse extends UIInterface {
                 System.out.println("\n\n");
                 break;
             }
+        }
+
+        if (!courseFound) {
+            debug.log("Course ID not found.");
         }
     }
 }

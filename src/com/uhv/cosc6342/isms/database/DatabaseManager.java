@@ -254,6 +254,9 @@ public class DatabaseManager implements Constants {
             deleteFromStudentsFile(studentIndex);     
             deleteFromUsersFile(id);     
         }
+        else {
+            debug.log("Student ID not found. No Student deleted");
+        }
     }
 
     /**
@@ -378,6 +381,9 @@ public class DatabaseManager implements Constants {
             deleteFromProfessorsFile(professorIndex);     
             deleteFromUsersFile(id);     
         }
+        else {
+            debug.log("Professor ID not found. No Professor deleted.");
+        }
     }
 
     /**
@@ -489,6 +495,9 @@ public class DatabaseManager implements Constants {
 
         if (courseIndex != -1) {
             deleteFromCoursesFile(courseIndex);     
+        }
+        else {
+            debug.log("Course ID not found. No Course deleted.");
         }
     }
 

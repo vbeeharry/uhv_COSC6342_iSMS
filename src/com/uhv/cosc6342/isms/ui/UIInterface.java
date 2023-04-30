@@ -7,6 +7,7 @@ import com.uhv.cosc6342.isms.utils.CsvReaderCourse;
 import com.uhv.cosc6342.isms.utils.CsvReaderProfessor;
 import com.uhv.cosc6342.isms.utils.CsvReaderStudent;
 import com.uhv.cosc6342.isms.utils.CsvReaderUser;
+import com.uhv.cosc6342.isms.utils.Debug;
 
 import java.util.Scanner;
 
@@ -22,6 +23,8 @@ public abstract class UIInterface {
     protected CsvReaderStudent crs;
     protected CsvReaderProfessor crp;
     protected CsvReaderCourse crc;
+
+    protected Debug debug;
 
     /**
      * Constructor
@@ -41,6 +44,7 @@ public abstract class UIInterface {
         crp = CsvReaderProfessor.getInstance(Constants.PROFESSORS_FILE);
         crs = CsvReaderStudent.getInstance(Constants.STUDENTS_FILE);
         crc = CsvReaderCourse.getInstance(Constants.COURSES_FILE);
+        debug = Debug.getInstance();
     }
 
     /**
