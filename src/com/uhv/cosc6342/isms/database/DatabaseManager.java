@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.util.Iterator;
 import java.util.List;
 
@@ -38,6 +39,7 @@ public class DatabaseManager implements Constants {
     public void init() {
         debug = Debug.getInstance();
         cru = CsvReaderUser.getInstance(USERS_FILE); cru.readAll();
+        crs = CsvReaderStudent.getInstance(STUDENTS_FILE); crs.readAll();
 
         try {
             debug.log("Checking Admins File");
@@ -216,6 +218,56 @@ public class DatabaseManager implements Constants {
         }
 
         return result;
+    }
+
+    /**
+     * Delete a student from the school database
+     */
+    public void deleteStudent(String id) {
+        int studentIndex = okToDeleteStudent(id);
+
+        if (studentIndex != -1) {
+            deleteFromStudentsFile(studentIndex);            
+        }
+    }
+
+    /**
+     * Check if ok to delete
+     */
+    private int okToDeleteStudent(String id) {
+        int result = -1;
+        List student = crs.getUserList();
+
+        int i = 0;
+        for (Iterator iter = student.iterator(); iter.hasNext();) {
+            String[] tempStudent = (String[]) iter.next();
+            if (tempStudent[3].equals(id)) {
+                result = i;
+                System.out.println("index: " + i);
+                break;
+            }
+            i++;
+        }
+
+        return result;
+    }
+
+    /**
+     * Delete frrom students file
+     */
+    private void deleteFromStudentsFile(int index) {
+        cru.getUserList().remove(index);
+        List temp = cru.getUserList();
+
+        try {
+            File file = new File(STUDENTS_FILE);
+            FileWriter fw = new FileWriter(file, false);
+            PrintWriter pw = new PrintWriter(fw, false);
+            pw.flush();
+            pw.close();
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
     }
 
     /**

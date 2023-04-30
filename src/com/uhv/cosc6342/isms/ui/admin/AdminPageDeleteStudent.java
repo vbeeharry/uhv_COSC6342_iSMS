@@ -27,5 +27,7 @@ public class AdminPageDeleteStudent extends UIInterface {
         System.out.println("Enter Student User ID:");
         Scanner in = new Scanner(System.in);
         String id = in.next();
+
+        dm.deleteStudent(id);
     }
 }
