@@ -1,5 +1,7 @@
 package com.uhv.cosc6342.isms.utils;
 
+import com.uhv.cosc6342.isms.users.User;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -19,7 +21,31 @@ public class CsvWriter {
     /**
      * Write to a csv file
      */
-    public void writeAll(String fileName, List data) {
+    public void writeAllUsers(String fileName, List data) {
+        try {
+            File file = new File(fileName);
+            FileWriter fw = new FileWriter(file);
+            BufferedWriter bw = new BufferedWriter(fw);
+
+            for (Iterator iter = data.iterator(); iter.hasNext();) {
+                User temp = (User) iter.next();
+                String str = temp.getFirstName() + "," + temp.getLastName() + ","
+                    + temp.getEmail() + "," + temp.getUserId() + ","
+                    + temp.getPassword() + "," + temp.getRole() + "\n";
+                bw.write(str);
+            }
+
+            bw.flush();
+            bw.close();
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
+    }
+
+    /**
+     * Write to a csv file
+     */
+    public void writeAllStudents(String fileName, List data) {
         try {
             File file = new File(fileName);
             FileWriter fw = new FileWriter(file);

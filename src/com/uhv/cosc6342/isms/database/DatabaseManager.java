@@ -230,7 +230,8 @@ public class DatabaseManager implements Constants {
         int studentIndex = okToDeleteStudent(id);
 
         if (studentIndex != -1) {
-            deleteFromStudentsFile(studentIndex);            
+            deleteFromStudentsFile(studentIndex);     
+            deleteFromUsersFile(id);     
         }
     }
 
@@ -260,7 +261,6 @@ public class DatabaseManager implements Constants {
     private void deleteFromStudentsFile(int index) {
         List students = crs.getUserList();
         students.remove(index);
-        debug.log("Student deleted - User ID: " + index);
 
         List temp = students;
 
@@ -274,7 +274,42 @@ public class DatabaseManager implements Constants {
             ioe.printStackTrace();
         }
 
-        cw.writeAll(STUDENTS_FILE, temp);
+        cw.writeAllStudents(STUDENTS_FILE, temp);
+    }
+
+    /**
+     * Delete from users file
+     */
+    private void deleteFromUsersFile(String id) {
+        int index = -1;
+        cru.updateUsers();
+        List users = cru.getUserList();
+
+        int i = 0;
+        for (Iterator iter = users.iterator(); iter.hasNext();) {
+            User tempUser = (User) iter.next();
+            if (tempUser.getUserId().equals(id)) {
+                index = i;
+                break;
+            }
+            i++;
+        }
+
+        users.remove(index);
+        List temp = users;
+
+        try {
+            File file = new File(USERS_FILE);
+            FileWriter fw = new FileWriter(file, false);
+            PrintWriter pw = new PrintWriter(fw, false);
+            pw.flush();
+            pw.close();
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
+
+        cw.writeAllUsers(USERS_FILE, temp);
+        debug.log("Student deleted - User ID: " + id);
     }
 
     /**

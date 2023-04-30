@@ -19,7 +19,7 @@ import java.util.List;
 /**
  * Class to read csv files
  */
-public class CsvReaderUser {
+public class CsvReaderUser implements Constants {
 
     private static CsvReaderUser cru = null;
 
@@ -74,6 +74,43 @@ public class CsvReaderUser {
             }
             br.close();
             System.out.println("\n\n\n\n\n");
+        }
+        catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
+    }
+
+    /**
+     * Update Users
+     */
+    public void updateUsers() {
+        userList.clear();
+
+        try {
+            File file = new File(USERS_FILE);
+            FileReader fr = new FileReader(file);
+            BufferedReader br = new BufferedReader(fr);
+            String line = " ";
+            String [] tempArr;
+            
+            while ((line = br.readLine()) != null) {
+                tempArr = line.split(",");
+                String role = tempArr[5];
+                if (role.equalsIgnoreCase("Admin")) {
+                    User u = new Admin(tempArr);
+                    userList.add(u);
+                    adminList.add((Admin) u);
+                }
+                else if (role.equalsIgnoreCase("Professor")) {
+                    User u = new Professor(tempArr);
+                    userList.add(u);
+                } 
+                else if (role.equalsIgnoreCase("Student")) {
+                    User u = new Student(tempArr);
+                    userList.add(u);
+                }
+            }
+            br.close();
         }
         catch (IOException ioe) {
             ioe.printStackTrace();
