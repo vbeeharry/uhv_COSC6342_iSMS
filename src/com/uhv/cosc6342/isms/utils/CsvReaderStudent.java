@@ -33,6 +33,8 @@ public class CsvReaderStudent {
      * ReadAll
      */
     public List readAll() {
+        userList.clear();
+        
         try {
             File file = new File(fileName);
             FileReader fr = new FileReader(file);

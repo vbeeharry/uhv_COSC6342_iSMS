@@ -7,6 +7,7 @@ import com.uhv.cosc6342.isms.users.User;
 import com.uhv.cosc6342.isms.utils.Constants;
 import com.uhv.cosc6342.isms.utils.CsvReaderUser;
 import com.uhv.cosc6342.isms.utils.CsvReaderStudent;
+import com.uhv.cosc6342.isms.utils.CsvWriter;
 import com.uhv.cosc6342.isms.utils.Debug;
 
 import java.io.IOException;
@@ -23,6 +24,7 @@ public class DatabaseManager implements Constants {
 
     private CsvReaderUser cru;
     private CsvReaderStudent crs;
+    private CsvWriter cw;
 
     private Debug debug;
 
@@ -40,6 +42,7 @@ public class DatabaseManager implements Constants {
         debug = Debug.getInstance();
         cru = CsvReaderUser.getInstance(USERS_FILE); cru.readAll();
         crs = CsvReaderStudent.getInstance(STUDENTS_FILE); crs.readAll();
+        cw = CsvWriter.getInstance();
 
         try {
             debug.log("Checking Admins File");
@@ -243,7 +246,6 @@ public class DatabaseManager implements Constants {
             String[] tempStudent = (String[]) iter.next();
             if (tempStudent[3].equals(id)) {
                 result = i;
-                System.out.println("index: " + i);
                 break;
             }
             i++;
@@ -256,8 +258,11 @@ public class DatabaseManager implements Constants {
      * Delete frrom students file
      */
     private void deleteFromStudentsFile(int index) {
-        cru.getUserList().remove(index);
-        List temp = cru.getUserList();
+        List students = crs.getUserList();
+        students.remove(index);
+        debug.log("Student deleted - User ID: " + index);
+
+        List temp = students;
 
         try {
             File file = new File(STUDENTS_FILE);
@@ -268,6 +273,8 @@ public class DatabaseManager implements Constants {
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }
+
+        cw.writeAll(STUDENTS_FILE, temp);
     }
 
     /**
