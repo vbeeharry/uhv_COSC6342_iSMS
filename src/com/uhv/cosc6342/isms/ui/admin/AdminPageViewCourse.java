@@ -44,6 +44,7 @@ public class AdminPageViewCourse extends UIInterface {
                 System.out.println("Room: " + course.getRoom());
                 System.out.println("Start Date: " + course.getStartDate());
                 System.out.println("End Date: " + course.getEndDate());
+                System.out.println("Professor ID: " + course.getProfessorId());
                 System.out.println("\n\n");
                 break;
             }

@@ -1,5 +1,5 @@
-cs1000,computer,monday,40,10,online,na,10Jan,3Mar
-ma1000,maths,tuesday,30,5,class,405,10Jan, 5Mar
-ph1000,physics,wednesday,20,5,hybrid,223,12Feb,4Apr
-sc1000,science,thursday,55,0,online,231,5Feb,6Mar
-sc1001,science2,friday,45,0,class,234,4Feb,7Mar
+cs1000,computer,monday,40,10,online,na,10Jan,3Mar,100
+ma1000,maths,tuesday,30,5,class,405,10Jan,5Mar,101
+ph1000,physics,wednesday,20,5,hybrid,223,12Feb,4Apr,102
+sc1000,science,thursday,55,0,online,231,5Feb,6Mar,101
+sc1001,science2,friday,45,0,class,234,4Feb,7Mar,102

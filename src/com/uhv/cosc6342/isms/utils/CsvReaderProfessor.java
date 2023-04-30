@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -60,6 +61,24 @@ public class CsvReaderProfessor {
      */
     public List getUserList() {
         return userList;
+    }
+
+    /**
+     * Get professor by id
+     */
+    public String getProfessorId(String id) {
+        String pId = "Not assigned";
+        readAll();
+        
+        for (Iterator iter = userList.iterator(); iter.hasNext();) {
+            String[] temp = (String[]) iter.next();
+            if (temp[3].equals(id)) {
+                pId = id;
+                break;
+            }
+        }
+
+        return pId;
     }
 
 
