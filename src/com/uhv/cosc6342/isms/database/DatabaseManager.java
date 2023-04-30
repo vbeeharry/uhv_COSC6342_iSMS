@@ -6,6 +6,7 @@ import com.uhv.cosc6342.isms.users.Student;
 import com.uhv.cosc6342.isms.users.User;
 import com.uhv.cosc6342.isms.utils.Constants;
 import com.uhv.cosc6342.isms.utils.CsvReaderUser;
+import com.uhv.cosc6342.isms.utils.CsvReaderProfessor;
 import com.uhv.cosc6342.isms.utils.CsvReaderStudent;
 import com.uhv.cosc6342.isms.utils.CsvWriter;
 import com.uhv.cosc6342.isms.utils.Debug;
@@ -23,6 +24,7 @@ public class DatabaseManager implements Constants {
     public static DatabaseManager dm = null;
 
     private CsvReaderUser cru;
+    private CsvReaderProfessor crp;
     private CsvReaderStudent crs;
     private CsvWriter cw;
 
@@ -41,6 +43,7 @@ public class DatabaseManager implements Constants {
     public void init() {
         debug = Debug.getInstance();
         cru = CsvReaderUser.getInstance(USERS_FILE); cru.readAll();
+        crp = CsvReaderProfessor.getInstance(PROFESSORS_FILE); crp.readAll();
         crs = CsvReaderStudent.getInstance(STUDENTS_FILE); crs.readAll();
         cw = CsvWriter.getInstance();
 
@@ -310,6 +313,41 @@ public class DatabaseManager implements Constants {
 
         cw.writeAllUsers(USERS_FILE, temp);
         debug.log("Student deleted - User ID: " + id);
+    }
+
+    /**
+     * Add a professor to the school database
+     */
+    public void addProfessor(String[] temp) {
+        debug.log("Adding a new professor");
+
+        boolean okToAdd = checkIfIdExists(cru, temp);
+        if (okToAdd) {
+            Professor tempProfessor = new Professor(temp);
+            writeToUserFile(tempProfessor, "professor");
+            writeToProfessorsFile(tempProfessor);
+        }
+        else {
+            System.out.println("Unable to add Professor. User ID Already exists.");
+        }
+    }
+
+    /**
+     * Write to professor file
+     */
+    private void writeToProfessorsFile(Professor professor) {
+        try {
+            FileWriter fw = new FileWriter(PROFESSORS_FILE, true);
+            BufferedWriter bw = new BufferedWriter(fw);
+            bw.write(professor.getFirstName() + "," 
+                    + professor.getLastName() + ","
+                    + professor.getEmail() + ","
+                    + professor.getUserId() + "\n");
+            bw.flush();
+            bw.close();
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
     }
 
     /**
