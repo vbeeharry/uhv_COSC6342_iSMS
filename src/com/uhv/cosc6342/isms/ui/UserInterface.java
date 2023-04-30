@@ -3,6 +3,7 @@ package com.uhv.cosc6342.isms.ui;
 import com.uhv.cosc6342.isms.login.LoginManagement;
 import com.uhv.cosc6342.isms.ui.admin.*;
 import com.uhv.cosc6342.isms.ui.professor.*;
+import com.uhv.cosc6342.isms.ui.student.*;
 import com.uhv.cosc6342.isms.users.User;
 
 /**
@@ -41,6 +42,11 @@ public class UserInterface {
     private ProfessorPage0 professorPage0;
     private ProfessorViewMyCourses professorViewMyCourses;
 
+    /** Student Accounts */
+    private StudentPage0 studentPage0;
+    private StudentRegisterForCourse studentRegisterForCourse;
+    private StudentViewAvailableCourses studentViewAvailableCourses;
+
     /**
      * Constructor
      */
@@ -78,6 +84,11 @@ public class UserInterface {
         /** Professor Accounts */
         professorPage0 = new ProfessorPage0();
         professorViewMyCourses = new ProfessorViewMyCourses();
+
+        /** Student Accounts */
+        studentPage0 = new StudentPage0();
+        studentRegisterForCourse = new StudentRegisterForCourse();
+        studentViewAvailableCourses = new StudentViewAvailableCourses();
     }
 
     /**
@@ -123,6 +134,7 @@ public class UserInterface {
             System.out.println("User info: " + activeUser + "\n");
             if (activeUser.getRole().equalsIgnoreCase("Admin")) adminPage0();
             else if (activeUser.getRole().equalsIgnoreCase("Professor")) professorPage0();
+            else if (activeUser.getRole().equalsIgnoreCase("Student")) studentPage0();
         }
         else {
             System.out.println("\nUser is not registered.\n");
@@ -370,10 +382,6 @@ public class UserInterface {
         adminPageDeleteCourse.deleteCourse();
     }
 
-    private void wrongEntry() {
-        System.out.println("Invalid entry. Try again !!! \n");
-    }
-
     /**
      * professorPage0
      */
@@ -405,12 +413,83 @@ public class UserInterface {
             professorPage0();
         }
     }
-    
+
     /**
      * professorViewMyCourses
      */
     private void professorViewMyCourses() {
         professorViewMyCourses.viewMyCourses();
+    }
+
+    /**
+     * studentPage0
+     */
+    private void studentPage0() {
+        studentPage0.displayTitle();
+        studentPage0.displayOptions();
+
+        switch(studentPage0.getSelection()) {
+            case 0:
+            System.exit(0);
+            break;
+/**
+            case 1:
+            professorViewMyCourses();
+            professorPage0();
+            break;
+
+
+            case 2:
+            adminPage2();
+            break;
+*/
+            case 3:
+            studentRegisterForCourse();
+            studentPage0();
+            break;
+
+            default:
+            wrongEntry();
+            studentPage0();
+        }
+    }
+
+    /**
+     * studentRegisterForCourse
+     */
+    private void studentRegisterForCourse() {
+        studentRegisterForCourse.displayTitle();
+        studentRegisterForCourse.displayOptions();
+
+        switch(studentRegisterForCourse.getSelection()) {
+            case 0:
+            System.exit(0);
+            break;
+
+            case 1:
+            studentPage0();
+            break;
+
+            case 2:
+            studentViewAvailableCourses();
+            studentRegisterForCourse();
+            break;
+
+            default:
+            wrongEntry();
+            studentRegisterForCourse();
+        }
+    }
+
+    /**
+     * studentViewAvailableCourses
+     */
+    private void studentViewAvailableCourses() {
+        studentViewAvailableCourses.viewMyCourses();
+    }
+
+    private void wrongEntry() {
+        System.out.println("Invalid entry. Try again !!! \n");
     }
 
     /**
