@@ -15,6 +15,7 @@ public class LoginManagement {
 
     private static LoginManagement lm = null;
 
+    private PasswordMonitor pm;
     private Logger logger;
 
     private List userList;
@@ -33,6 +34,7 @@ public class LoginManagement {
      */
     private void init() {
         userList = CsvReaderUser.getInstance().getUserList();
+        pm = PasswordMonitor.getInstance();
         logger = Logger.getInstance();
     }
 
@@ -40,14 +42,18 @@ public class LoginManagement {
      * Check if the user is authorized
      */
     public boolean isAuthorized(String userId, String password) {
+        authorized = false;
+
         for (Iterator iter = userList.iterator(); iter.hasNext();) {
             User temp = (User) iter.next();
-            if (temp.getUserId().equals(userId) && temp.getPassword().equals(password)) {
+            if (temp.getUserId().equals(userId) && 
+                pm.validate(temp.getPassword(), password)) {
                 authorized = true;
                 activeUser = temp;
                 logger.update(activeUser);
             }
         }
+
         return authorized;
     }
 

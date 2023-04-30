@@ -1,5 +1,6 @@
 package com.uhv.cosc6342.isms.database;
 
+import com.uhv.cosc6342.isms.login.PasswordGenerator;
 import com.uhv.cosc6342.isms.users.Admin;
 import com.uhv.cosc6342.isms.users.Professor;
 import com.uhv.cosc6342.isms.users.Student;
@@ -30,6 +31,8 @@ public class DatabaseManager implements Constants {
 
     private Debug debug;
 
+    private PasswordGenerator pg;
+
     /**
      * Private constructor
      */
@@ -42,6 +45,7 @@ public class DatabaseManager implements Constants {
      */
     public void init() {
         debug = Debug.getInstance();
+        pg = PasswordGenerator.getInstance();
         cru = CsvReaderUser.getInstance(USERS_FILE); cru.readAll();
         crp = CsvReaderProfessor.getInstance(PROFESSORS_FILE); crp.readAll();
         crs = CsvReaderStudent.getInstance(STUDENTS_FILE); crs.readAll();
@@ -163,7 +167,7 @@ public class DatabaseManager implements Constants {
                     + user.getLastName() + ","
                     + user.getEmail() + ","
                     + user.getUserId() + ","
-                    + user.getPassword() + ","
+                    + pg.createPassword(user.getPassword()) + ","
                     + role + "\n");
             bw.flush();
             bw.close();
