@@ -39,6 +39,7 @@ public class UserInterface {
 
     /** Professor Accounts */
     private ProfessorPage0 professorPage0;
+    private ProfessorViewMyCourses professorViewMyCourses;
 
     /**
      * Constructor
@@ -76,6 +77,7 @@ public class UserInterface {
         
         /** Professor Accounts */
         professorPage0 = new ProfessorPage0();
+        professorViewMyCourses = new ProfessorViewMyCourses();
     }
 
     /**
@@ -383,11 +385,13 @@ public class UserInterface {
             case 0:
             System.exit(0);
             break;
-/**
+
             case 1:
-            adminPage1();
+            professorViewMyCourses();
+            professorPage0();
             break;
 
+/**
             case 2:
             adminPage2();
             break;
@@ -398,10 +402,17 @@ public class UserInterface {
 */
             default:
             wrongEntry();
-            adminPage0();
+            professorPage0();
         }
     }
     
+    /**
+     * professorViewMyCourses
+     */
+    private void professorViewMyCourses() {
+        professorViewMyCourses.viewMyCourses();
+    }
+
     /**
      * Singleton instance
      */
