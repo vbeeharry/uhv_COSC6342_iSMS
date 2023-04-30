@@ -30,6 +30,7 @@ public class UserInterface {
     private AdminPageAddProfessor adminPageAddProfessor;
     private AdminPageDeleteProfessor adminPageDeleteProfessor;
     private AdminPageViewCourses adminPageViewCourses;
+    private AdminPageAddCourse adminPageAddCourse;
 
     /**
      * Constructor
@@ -59,6 +60,7 @@ public class UserInterface {
         adminPageAddProfessor = new AdminPageAddProfessor();
         adminPageDeleteProfessor = new AdminPageDeleteProfessor(); 
         adminPageViewCourses = new AdminPageViewCourses();
+        adminPageAddCourse = new AdminPageAddCourse();
     }
 
     /**
@@ -249,12 +251,12 @@ public class UserInterface {
             adminPageViewProfessor();
             adminPage2();
             break;
-
+*/
             case 4:
-            adminPageAddProfessor();
-            adminPage2();
+            adminPageAddCourse();
+            adminPage3();
             break;
-
+/**
             case 5:
             adminPageDeleteProfessor();
             adminPage2();
@@ -327,6 +329,13 @@ public class UserInterface {
      */
     private void adminPageViewCourses() {
         adminPageViewCourses.viewCourses();
+    }
+
+    /**
+     * adminPageAddCourse
+     */
+    private void adminPageAddCourse() {
+        adminPageAddCourse.addCourse();
     }
 
     private void wrongEntry() {

@@ -1,5 +1,6 @@
 package com.uhv.cosc6342.isms.database;
 
+import com.uhv.cosc6342.isms.courses.Course;
 import com.uhv.cosc6342.isms.login.PasswordGenerator;
 import com.uhv.cosc6342.isms.users.Admin;
 import com.uhv.cosc6342.isms.users.Professor;
@@ -420,6 +421,66 @@ public class DatabaseManager implements Constants {
 
         cw.writeAllProfessors(PROFESSORS_FILE, temp);
         debug.log("Professor Profile has been deleted");
+    }
+
+    /**
+     * Add a course for the semester
+     */
+    public void addCourse(String[] temp) {
+        debug.log("Adding a new course");
+
+        boolean okToAdd = checkIfCourseIdExists(crc, temp);
+        if (okToAdd) {
+            Course course = new Course(temp);
+            writeToCourseFile(course);
+        }
+        else {
+            System.out.println("Unable to add Course. Course ID Already exists.");
+        }
+    }
+
+    /**
+     * Check if course id already exists
+     */
+    private boolean checkIfCourseIdExists(CsvReaderCourse crc, String[] temp) {
+        boolean result = true;
+        List course = crc.getCourseList();
+
+        for (Iterator iter = course.iterator(); iter.hasNext();) {
+            Course tempCourse = (Course) iter.next();
+            if (tempCourse.getId().equals(temp[0])) {
+                result = false;
+                break;
+            }
+        }
+
+        return result;
+    }
+
+
+    /**
+     * Write to course file
+     */
+    private void writeToCourseFile(Course course) {
+        try {
+            FileWriter fw = new FileWriter(COURSES_FILE, true);
+            BufferedWriter bw = new BufferedWriter(fw);
+            bw.write(course.getId() + ","
+                    + course.getName() + ","
+                    + course.getDay() + ","
+                    + course.getNumOfSeatsTotal() + ","
+                    + course.getNumOfSeatsTaken() + ","
+                    + course.getNumOfSeatsAvailable() + ","
+                    + course.getInstructionMode() + ","
+                    + course.getRoom() + ","
+                    + course.getStartDate() + ","
+                    + course.getEndDate() + "\n");
+
+            bw.flush();
+            bw.close();
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
     }
     
     /**
