@@ -2,6 +2,7 @@ package com.uhv.cosc6342.isms.ui;
 
 import com.uhv.cosc6342.isms.login.LoginManagement;
 import com.uhv.cosc6342.isms.ui.admin.*;
+import com.uhv.cosc6342.isms.ui.professor.*;
 import com.uhv.cosc6342.isms.users.User;
 
 /**
@@ -17,6 +18,8 @@ public class UserInterface {
 
     private EntryPage entryPage;
     private SignInPage signInPage;
+
+    /** Admin Accounts */
     private AdminPage0 adminPage0;
     private AdminPage1 adminPage1;
     private AdminPage2 adminPage2;
@@ -34,6 +37,9 @@ public class UserInterface {
     private AdminPageAddCourse adminPageAddCourse;
     private AdminPageDeleteCourse adminPageDeleteCourse;
 
+    /** Professor Accounts */
+    private ProfessorPage0 professorPage0;
+
     /**
      * Constructor
      */
@@ -49,6 +55,8 @@ public class UserInterface {
 
         entryPage = new EntryPage();
         signInPage = new SignInPage();
+
+        /** Admin Accounts */
         adminPage0 = new AdminPage0();
         adminPage1 = new AdminPage1();
         adminPage2 = new AdminPage2();
@@ -65,6 +73,9 @@ public class UserInterface {
         adminPageViewCourse = new AdminPageViewCourse();
         adminPageAddCourse = new AdminPageAddCourse();
         adminPageDeleteCourse = new AdminPageDeleteCourse();
+        
+        /** Professor Accounts */
+        professorPage0 = new ProfessorPage0();
     }
 
     /**
@@ -108,7 +119,8 @@ public class UserInterface {
             System.out.println("\nUser is authorized");
             activeUser = lm.getActiveUser();
             System.out.println("User info: " + activeUser + "\n");
-            adminPage0();
+            if (activeUser.getRole().equalsIgnoreCase("Admin")) adminPage0();
+            else if (activeUser.getRole().equalsIgnoreCase("Professor")) professorPage0();
         }
         else {
             System.out.println("\nUser is not registered.\n");
@@ -360,6 +372,35 @@ public class UserInterface {
         System.out.println("Invalid entry. Try again !!! \n");
     }
 
+    /**
+     * professorPage0
+     */
+    private void professorPage0() {
+        professorPage0.displayTitle();
+        professorPage0.displayOptions();
+
+        switch(professorPage0.getSelection()) {
+            case 0:
+            System.exit(0);
+            break;
+/**
+            case 1:
+            adminPage1();
+            break;
+
+            case 2:
+            adminPage2();
+            break;
+
+            case 3:
+            adminPage3();
+            break;
+*/
+            default:
+            wrongEntry();
+            adminPage0();
+        }
+    }
     
     /**
      * Singleton instance
