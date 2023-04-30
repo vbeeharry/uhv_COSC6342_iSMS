@@ -15,6 +15,7 @@ public class LoginManagement {
 
     private static LoginManagement lm = null;
 
+    private Logger logger;
 
     private List userList;
     private boolean authorized = false;
@@ -32,6 +33,7 @@ public class LoginManagement {
      */
     private void init() {
         userList = CsvReaderUser.getInstance().getUserList();
+        logger = Logger.getInstance();
     }
 
     /**
@@ -43,6 +45,7 @@ public class LoginManagement {
             if (temp.getUserId().equals(userId) && temp.getPassword().equals(password)) {
                 authorized = true;
                 activeUser = temp;
+                logger.update(activeUser);
             }
         }
         return authorized;

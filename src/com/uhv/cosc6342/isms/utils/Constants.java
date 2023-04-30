@@ -6,4 +6,5 @@ public interface Constants {
     public static String ADMINS_FILE = "admins.csv";
     public static String PROFESSORS_FILE = "professors.csv";
     public static String STUDENTS_FILE = "students.csv";
+    public static String LOGGER_FILE = "logger.csv";
 }
