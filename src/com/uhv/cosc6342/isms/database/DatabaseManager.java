@@ -9,6 +9,7 @@ import com.uhv.cosc6342.isms.utils.Constants;
 import com.uhv.cosc6342.isms.utils.CsvReaderUser;
 import com.uhv.cosc6342.isms.utils.CsvReaderProfessor;
 import com.uhv.cosc6342.isms.utils.CsvReaderStudent;
+import com.uhv.cosc6342.isms.utils.CsvReaderCourse;
 import com.uhv.cosc6342.isms.utils.CsvWriter;
 import com.uhv.cosc6342.isms.utils.Debug;
 
@@ -27,6 +28,7 @@ public class DatabaseManager implements Constants {
     private CsvReaderUser cru;
     private CsvReaderProfessor crp;
     private CsvReaderStudent crs;
+    private CsvReaderCourse crc;
     private CsvWriter cw;
 
     private Debug debug;
@@ -49,6 +51,7 @@ public class DatabaseManager implements Constants {
         cru = CsvReaderUser.getInstance(USERS_FILE); cru.readAll();
         crp = CsvReaderProfessor.getInstance(PROFESSORS_FILE); crp.readAll();
         crs = CsvReaderStudent.getInstance(STUDENTS_FILE); crs.readAll();
+        crc = CsvReaderCourse.getInstance(COURSES_FILE); crc.readAll();
         cw = CsvWriter.getInstance();
 
         try {
@@ -81,9 +84,20 @@ public class DatabaseManager implements Constants {
             ioe.printStackTrace();
         }
 
+        try {
+            debug.log("Checking Courses File");
+            File coursesFile = new File(COURSES_FILE);
+            if (!coursesFile.exists()) {
+                coursesFile.createNewFile();
+            }
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
+        
         writeToAdminsFile();
         writeToProfessorsFile();
         writeToStudentsFile();
+        writeToCoursesFile();
     }
 
     /**
@@ -142,6 +156,30 @@ public class DatabaseManager implements Constants {
             
             for (Iterator iter = cru.getStudentList().iterator(); iter.hasNext();) {
                 Student temp = (Student) iter.next();
+                bw.write(temp.getFirstName() + "," 
+                    + temp.getLastName() + ","
+                    + temp.getEmail() + ","
+                    + temp.getUserId() + ","
+                    + temp.getGpa() + "\n") ;
+            }
+
+            bw.flush();
+            bw.close();
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
+    }
+
+    /**
+     * Write to courses file
+     */
+    public void writeToCoursesFile() {
+        try {
+            FileWriter fw = new FileWriter(COURSES_FILE);
+            BufferedWriter bw = new BufferedWriter(fw);
+            
+            for (Iterator iter = crc.getCourseList().iterator(); iter.hasNext();) {
+                Course temp = (Course) iter.next();
                 bw.write(temp.getFirstName() + "," 
                     + temp.getLastName() + ","
                     + temp.getEmail() + ","
