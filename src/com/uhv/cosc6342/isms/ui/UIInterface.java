@@ -3,9 +3,10 @@ package com.uhv.cosc6342.isms.ui;
 import com.uhv.cosc6342.isms.database.DatabaseManager;
 import com.uhv.cosc6342.isms.login.LoginManagement;
 import com.uhv.cosc6342.isms.utils.Constants;
-import com.uhv.cosc6342.isms.utils.CsvReaderUser;
+import com.uhv.cosc6342.isms.utils.CsvReaderCourse;
 import com.uhv.cosc6342.isms.utils.CsvReaderProfessor;
 import com.uhv.cosc6342.isms.utils.CsvReaderStudent;
+import com.uhv.cosc6342.isms.utils.CsvReaderUser;
 
 import java.util.Scanner;
 
@@ -20,6 +21,7 @@ public abstract class UIInterface {
     protected CsvReaderUser cru;
     protected CsvReaderStudent crs;
     protected CsvReaderProfessor crp;
+    protected CsvReaderCourse crc;
 
     /**
      * Constructor
@@ -38,6 +40,7 @@ public abstract class UIInterface {
         cru = CsvReaderUser.getInstance(Constants.USERS_FILE);
         crp = CsvReaderProfessor.getInstance(Constants.PROFESSORS_FILE);
         crs = CsvReaderStudent.getInstance(Constants.STUDENTS_FILE);
+        crc = CsvReaderCourse.getInstance(Constants.COURSES_FILE);
     }
 
     /**

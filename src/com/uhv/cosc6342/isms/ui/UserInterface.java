@@ -20,6 +20,7 @@ public class UserInterface {
     private AdminPage0 adminPage0;
     private AdminPage1 adminPage1;
     private AdminPage2 adminPage2;
+    private AdminPage3 adminPage3;
     private AdminPageViewStudents adminPageViewStudents;
     private AdminPageViewStudent adminPageViewStudent;
     private AdminPageAddStudent adminPageAddStudent;
@@ -28,6 +29,7 @@ public class UserInterface {
     private AdminPageViewProfessor adminPageViewProfessor;
     private AdminPageAddProfessor adminPageAddProfessor;
     private AdminPageDeleteProfessor adminPageDeleteProfessor;
+    private AdminPageViewCourses adminPageViewCourses;
 
     /**
      * Constructor
@@ -47,6 +49,7 @@ public class UserInterface {
         adminPage0 = new AdminPage0();
         adminPage1 = new AdminPage1();
         adminPage2 = new AdminPage2();
+        adminPage3 = new AdminPage3();
         adminPageViewStudents = new AdminPageViewStudents();
         adminPageViewStudent = new AdminPageViewStudent();
         adminPageAddStudent = new AdminPageAddStudent();
@@ -55,6 +58,7 @@ public class UserInterface {
         adminPageViewProfessor = new AdminPageViewProfessor();
         adminPageAddProfessor = new AdminPageAddProfessor();
         adminPageDeleteProfessor = new AdminPageDeleteProfessor(); 
+        adminPageViewCourses = new AdminPageViewCourses();
     }
 
     /**
@@ -127,6 +131,7 @@ public class UserInterface {
             break;
 
             case 3:
+            adminPage3();
             break;
 
             default:
@@ -184,7 +189,7 @@ public class UserInterface {
         adminPage2.displayTitle();
         adminPage2.displayOptions();
 
-        switch(adminPage1.getSelection()) {
+        switch(adminPage2.getSelection()) {
             case 0:
             System.exit(0);
             break;
@@ -216,6 +221,48 @@ public class UserInterface {
             default:
             wrongEntry();
             adminPage2();
+        }
+    }
+
+    /**
+     * adminPage3
+     */
+    private void adminPage3() {
+        adminPage3.displayTitle();
+        adminPage3.displayOptions();
+
+        switch(adminPage3.getSelection()) {
+            case 0:
+            System.exit(0);
+            break;
+
+            case 1:
+            adminPage0();
+            break;
+
+            case 2:
+            adminPageViewCourses();
+            adminPage3();
+            break;
+/**
+            case 3:
+            adminPageViewProfessor();
+            adminPage2();
+            break;
+
+            case 4:
+            adminPageAddProfessor();
+            adminPage2();
+            break;
+
+            case 5:
+            adminPageDeleteProfessor();
+            adminPage2();
+            break;
+*/
+            default:
+            wrongEntry();
+            adminPage3();
         }
     }
 
@@ -273,6 +320,13 @@ public class UserInterface {
      */
     private void adminPageDeleteProfessor() {
         adminPageDeleteProfessor.deleteProfessor();
+    }
+
+    /**
+     * adminPageViewCourses
+     */
+    private void adminPageViewCourses() {
+        adminPageViewCourses.viewCourses();
     }
 
     private void wrongEntry() {

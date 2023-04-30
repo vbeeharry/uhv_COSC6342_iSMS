@@ -97,7 +97,6 @@ public class DatabaseManager implements Constants {
         writeToAdminsFile();
         writeToProfessorsFile();
         writeToStudentsFile();
-        writeToCoursesFile();
     }
 
     /**
@@ -156,30 +155,6 @@ public class DatabaseManager implements Constants {
             
             for (Iterator iter = cru.getStudentList().iterator(); iter.hasNext();) {
                 Student temp = (Student) iter.next();
-                bw.write(temp.getFirstName() + "," 
-                    + temp.getLastName() + ","
-                    + temp.getEmail() + ","
-                    + temp.getUserId() + ","
-                    + temp.getGpa() + "\n") ;
-            }
-
-            bw.flush();
-            bw.close();
-        } catch (IOException ioe) {
-            ioe.printStackTrace();
-        }
-    }
-
-    /**
-     * Write to courses file
-     */
-    public void writeToCoursesFile() {
-        try {
-            FileWriter fw = new FileWriter(COURSES_FILE);
-            BufferedWriter bw = new BufferedWriter(fw);
-            
-            for (Iterator iter = crc.getCourseList().iterator(); iter.hasNext();) {
-                Course temp = (Course) iter.next();
                 bw.write(temp.getFirstName() + "," 
                     + temp.getLastName() + ","
                     + temp.getEmail() + ","

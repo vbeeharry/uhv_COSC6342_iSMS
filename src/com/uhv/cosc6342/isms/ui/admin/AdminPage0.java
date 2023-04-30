@@ -16,9 +16,10 @@ public class AdminPage0 extends UIInterface {
      */
     protected void init() {
         title = "Admin"; //lm.getActiveUser().toString();
-        options = new String[3];
+        options = new String[4];
         options[0] = new String("Log out and Exit");
         options[1] = new String("Manage Students");
         options[2] = new String("Manage Professors");
+        options[3] = new String("Manage Courses");
     }
 }

@@ -1,0 +1,37 @@
+package com.uhv.cosc6342.isms.ui.admin;
+
+import com.uhv.cosc6342.isms.courses.Course;
+import com.uhv.cosc6342.isms.ui.UIInterface;
+
+import java.util.Iterator;
+import java.util.List;
+
+public class AdminPageViewCourses extends UIInterface {
+    
+    /**
+     * Init
+     */
+    protected void init() {
+        title = "Admin - View Semester Courses";
+    }
+
+    /**
+     * Display courses list
+     */
+    public void viewCourses() {
+        List temp = crc.readAll();
+        System.out.println("\n");
+        displayTitle();
+
+        for (Iterator iter = temp.iterator(); iter.hasNext();) {
+            Course course = (Course) iter.next();
+            System.out.println("Course ID: " + course.getId());
+            System.out.println("Name: " + course.getName());
+            System.out.println("Day: " + course.getDay());
+            System.out.println("Total Seats " + course.getNumOfSeatsTotal());
+            System.out.println("Seats Taken: " + course.getNumOfSeatsTaken());
+            System.out.println("Seats Available: " + course.getNumOfSeatsAvailable());
+            System.out.println("\n\n");
+        }
+    }
+}

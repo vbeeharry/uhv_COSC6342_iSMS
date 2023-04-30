@@ -1,7 +1,9 @@
 /**
  * CsvReaderCourse.java
  */
-package com.uhv.cosc6342.isms.utils;
+ package com.uhv.cosc6342.isms.utils;
+
+import com.uhv.cosc6342.isms.courses.Course;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -34,7 +36,7 @@ public class CsvReaderCourse {
      */
     public List readAll() {
         courseList.clear();
-        
+                
         try {
             File file = new File(fileName);
             FileReader fr = new FileReader(file);
@@ -44,7 +46,7 @@ public class CsvReaderCourse {
             
             while ((line = br.readLine()) != null) {
                 tempArr = line.split(",");
-                courseList.add(tempArr);
+                courseList.add(new Course(tempArr));
             }
             br.close();
         }
@@ -67,8 +69,8 @@ public class CsvReaderCourse {
      * Singleton instance
      */
     public static CsvReaderCourse getInstance(String fileName) {
-        if (crc == null) { crs = new CsvReaderCourse(fileName); }
-        return crs;
+        if (crc == null) { crc = new CsvReaderCourse(fileName); }
+        return crc;
     }
 
     /**
