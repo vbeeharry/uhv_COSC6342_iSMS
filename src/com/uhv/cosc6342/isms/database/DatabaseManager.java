@@ -457,7 +457,6 @@ public class DatabaseManager implements Constants {
         return result;
     }
 
-
     /**
      * Write to course file
      */
@@ -482,6 +481,61 @@ public class DatabaseManager implements Constants {
         }
     }
     
+    /**
+     * Delete a course from the school database
+     */
+    public void deleteCourse(String id) {
+        int courseIndex = okToDeleteCourse(id);
+
+        if (courseIndex != -1) {
+            deleteFromCoursesFile(courseIndex);     
+        }
+    }
+
+    /**
+     * Check if ok to delete
+     */
+    private int okToDeleteCourse(String id) {
+        int result = -1;
+        List course = crc.getCourseList();
+
+        int i = 0;
+        for (Iterator iter = course.iterator(); iter.hasNext();) {
+            Course tempCourse = (Course) iter.next();
+            if (tempCourse.getId().equals(id)) {
+                result = i;
+                break;
+            }
+            i++;
+        }
+
+        return result;
+    }
+
+    /**
+     * Delete frrom courses file
+     */
+    private void deleteFromCoursesFile(int index) {
+        crc.readAll();
+        List courses = crc.getCourseList();
+        courses.remove(index);
+
+        List temp = courses;
+
+        try {
+            File file = new File(COURSES_FILE);
+            FileWriter fw = new FileWriter(file, false);
+            PrintWriter pw = new PrintWriter(fw, false);
+            pw.flush();
+            pw.close();
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
+
+        cw.writeAllCourses(COURSES_FILE, temp);
+        debug.log("Course has been deleted");
+    }
+
     /**
      * Singleton instance
      */

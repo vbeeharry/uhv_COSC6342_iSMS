@@ -30,7 +30,7 @@ public class AdminPageAddCourse extends UIInterface {
         temp[1] = in.next();
         System.out.println("Enter Teaching Day: ");
         temp[2] = in.next();
-        System.out.println("Enter Total Seats Available " );
+        System.out.println("Enter Total Seats Available: " );
         temp[3] = in.next();
         temp[4] = Integer.toString(0);
         System.out.println("Enter Instruction Mode: ");

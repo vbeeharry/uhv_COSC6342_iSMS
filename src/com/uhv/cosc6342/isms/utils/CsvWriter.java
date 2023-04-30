@@ -1,5 +1,6 @@
 package com.uhv.cosc6342.isms.utils;
 
+import com.uhv.cosc6342.isms.courses.Course;
 import com.uhv.cosc6342.isms.users.User;
 
 import java.io.BufferedWriter;
@@ -77,6 +78,33 @@ public class CsvWriter {
                 String[] temp = (String[]) iter.next();
                 bw.write(temp[0] + "," + temp[1] + "," + temp[2] + ","
                     + temp[3] + "\n");
+            }
+
+            bw.flush();
+            bw.close();
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
+    }
+
+    /**
+     * Write to a csv file
+     */
+    public void writeAllCourses(String fileName, List data) {
+        try {
+            File file = new File(fileName);
+            FileWriter fw = new FileWriter(file);
+            BufferedWriter bw = new BufferedWriter(fw);
+
+            for (Iterator iter = data.iterator(); iter.hasNext();) {
+                Course temp = (Course) iter.next();
+                String str = temp.getId() + "," + temp.getName() + ","
+                    + temp.getDay() + "," + temp.getNumOfSeatsTotal() + ","
+                    + temp.getNumOfSeatsTaken() + "," + temp.getNumOfSeatsAvailable() + ","
+                    + temp.getInstructionMode() + "," + temp.getRoom() + ","
+                    + temp.getStartDate() + "," + temp.getEndDate();
+
+                bw.write(str + "\n");
             }
 
             bw.flush();

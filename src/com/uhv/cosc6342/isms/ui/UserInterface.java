@@ -32,6 +32,7 @@ public class UserInterface {
     private AdminPageViewCourses adminPageViewCourses;
     private AdminPageViewCourse adminPageViewCourse;
     private AdminPageAddCourse adminPageAddCourse;
+    private AdminPageDeleteCourse adminPageDeleteCourse;
 
     /**
      * Constructor
@@ -63,6 +64,7 @@ public class UserInterface {
         adminPageViewCourses = new AdminPageViewCourses();
         adminPageViewCourse = new AdminPageViewCourse();
         adminPageAddCourse = new AdminPageAddCourse();
+        adminPageDeleteCourse = new AdminPageDeleteCourse();
     }
 
     /**
@@ -258,12 +260,12 @@ public class UserInterface {
             adminPageAddCourse();
             adminPage3();
             break;
-/**
+
             case 5:
-            adminPageDeleteProfessor();
-            adminPage2();
+            adminPageDeleteCourse();
+            adminPage3();
             break;
-*/
+
             default:
             wrongEntry();
             adminPage3();
@@ -347,10 +349,18 @@ public class UserInterface {
         adminPageAddCourse.addCourse();
     }
 
+    /**
+     * adminPageDeleteCourse
+     */
+    private void adminPageDeleteCourse() {
+        adminPageDeleteCourse.deleteCourse();
+    }
+
     private void wrongEntry() {
         System.out.println("Invalid entry. Try again !!! \n");
     }
 
+    
     /**
      * Singleton instance
      */
