@@ -47,6 +47,7 @@ public class LoginManagement {
         for (Iterator iter = userList.iterator(); iter.hasNext();) {
             User temp = (User) iter.next();
             if (temp.getUserId().equals(userId) && 
+                //temp.getPassword().equals(password)) {
                 pm.validate(temp.getPassword(), password)) {
                 authorized = true;
                 activeUser = temp;
