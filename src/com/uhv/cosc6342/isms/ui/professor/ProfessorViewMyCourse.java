@@ -21,7 +21,8 @@ public class ProfessorViewMyCourse extends UIInterface {
     /**
      * View my course
      */
-    public void viewMyCourse() {
+    public String viewMyCourse() {
+        String selectedCourseId = null;
         displayTitle();
 
         crc.readAll();
@@ -49,11 +50,14 @@ public class ProfessorViewMyCourse extends UIInterface {
                 System.out.println("Start Date: " + course.getStartDate());
                 System.out.println("End Date: " + course.getEndDate());
                 System.out.println("\n\n");
+                selectedCourseId = id;
             }
         }
 
         if (!courseFound) {
             System.out.println("This course is not assigned to me.");
         }
+
+        return selectedCourseId;
     }
 }

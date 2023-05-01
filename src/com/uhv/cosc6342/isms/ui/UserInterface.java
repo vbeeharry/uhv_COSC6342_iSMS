@@ -43,6 +43,7 @@ public class UserInterface {
     private ProfessorViewMyCourses professorViewMyCourses;
     private ProfessorViewMyCourse professorViewMyCourse;
     private ProfessorPageViewMyCourse professorPageViewMyCourse;
+    private ProfessorViewStudents professorViewStudents;
 
     /** Student Accounts */
     private StudentPage0 studentPage0;
@@ -91,6 +92,7 @@ public class UserInterface {
         professorViewMyCourses = new ProfessorViewMyCourses();
         professorViewMyCourse = new ProfessorViewMyCourse();
         professorPageViewMyCourse = new ProfessorPageViewMyCourse();
+        professorViewStudents = new ProfessorViewStudents();
 
         /** Student Accounts */
         studentPage0 = new StudentPage0();
@@ -410,8 +412,10 @@ public class UserInterface {
             break;
 
             case 2:
-            professorViewMyCourse();
-            professorPageViewMyCourse();
+            String courseId = professorViewMyCourse();
+            if (courseId != null) { 
+                professorPageViewMyCourse(courseId);
+            }
             break;
 /** 
             case 3:
@@ -434,25 +438,42 @@ public class UserInterface {
     /**
      * professorViewMyCourses
      */
-    private void professorViewMyCourse() {
-        professorViewMyCourse.viewMyCourse();
+    private String  professorViewMyCourse() {
+        return professorViewMyCourse.viewMyCourse();
     }
 
     /**
      * professorPageViewMyCourse()
      */
-    private void professorPageViewMyCourse() {
+    private void professorPageViewMyCourse(String courseId) {
         professorPageViewMyCourse.displayTitle();
         professorPageViewMyCourse.displayOptions();
 
         switch(professorPageViewMyCourse.getSelection()) {
             case 0:
+            System.exit(0);
+            break;
+
+            case 1:
+            professorPage0();
+            break;
+
+            case 2:
+            professorViewStudents(courseId);
+            professorPageViewMyCourse(courseId);
             break;
 
             default:
             wrongEntry();
-            professorPageViewMyCourse();
+            professorPageViewMyCourse(courseId);
         }
+    }
+
+    /**
+     * professorViewStudents
+     */
+    private void professorViewStudents(String courseId) {
+        professorViewStudents.viewRegisteredStudents(courseId);
     }
 
     /**
