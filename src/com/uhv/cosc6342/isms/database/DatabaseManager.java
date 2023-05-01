@@ -559,7 +559,8 @@ public class DatabaseManager implements Constants {
     public void addStudentCourse(Student student, Course course) {
         boolean okToAdd = checkIfStudentCourseIdExists(student, course);
         if (okToAdd) {
-            writeToStudentCourseFile(student, course);            
+            writeToStudentCourseFile(student, course);
+            debug.log("\nCourse has been registere.");
         }
         else {
             System.out.println("Student has already regsitered for this course.");
@@ -606,10 +607,61 @@ public class DatabaseManager implements Constants {
     }
 
     /**
-     * Drop a course to a student
+     * Drop a course for a student
      */
     public void dropStudentCourse(Student student, Course course) {
-        System.out.println("dropping something");
+        int courseIndex = okToDeleteStudentCourse(student, course);
+
+        if (courseIndex != -1) {
+            deleteFromStudentCourseFile(courseIndex);     
+        }
+        else {
+            debug.log("Course ID not found. No Course deleted.");
+        }
+    }
+
+     /**
+     * Check if ok to delete
+     */
+    private int okToDeleteStudentCourse(Student student, Course course) {
+        int result = -1;
+        List studentCourseList = crsc.getStudentCourseList();
+
+        int i = 0;
+        for (Iterator iter = studentCourseList.iterator(); iter.hasNext();) {
+            String[] temp = (String[]) iter.next();
+            if (temp[0].equals(student.getUserId()) && temp[1].equals(course.getId())) {
+                result = i;
+                break;
+            }
+            i++;
+        }
+
+        return result;
+    }
+    
+    /**
+     * Delete frrom student course file
+     */
+    private void deleteFromStudentCourseFile(int index) {
+        crsc.readAll();
+        List studentCourseList = crsc.getStudentCourseList();
+        studentCourseList.remove(index);
+
+        List temp = studentCourseList;
+
+        try {
+            File file = new File(STUDENT_COURSE_FILE);
+            FileWriter fw = new FileWriter(file, false);
+            PrintWriter pw = new PrintWriter(fw, false);
+            pw.flush();
+            pw.close();
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
+
+        cw.writeAllStudentCourse(STUDENT_COURSE_FILE, temp);
+        debug.log("Course has been deleted");
     }
 
     /**

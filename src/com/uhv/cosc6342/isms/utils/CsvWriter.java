@@ -115,6 +115,28 @@ public class CsvWriter {
     }
 
     /**
+     * Write to a csv file
+     */
+    public void writeAllStudentCourse(String fileName, List data) {
+        try {
+            File file = new File(fileName);
+            FileWriter fw = new FileWriter(file);
+            BufferedWriter bw = new BufferedWriter(fw);
+
+            for (Iterator iter = data.iterator(); iter.hasNext();) {
+                String[] temp = (String[]) iter.next();
+                String str = temp[0] + "," + temp[1];
+                bw.write(str + "\n");
+            }
+
+            bw.flush();
+            bw.close();
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
+    }
+
+    /**
      * Singleton Instance
      */
     public static CsvWriter getInstance() {
