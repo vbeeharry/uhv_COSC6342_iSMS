@@ -42,6 +42,7 @@ public class UserInterface {
     private ProfessorPage0 professorPage0;
     private ProfessorViewMyCourses professorViewMyCourses;
     private ProfessorViewMyCourse professorViewMyCourse;
+    private ProfessorPageViewMyCourse professorPageViewMyCourse;
 
     /** Student Accounts */
     private StudentPage0 studentPage0;
@@ -89,6 +90,7 @@ public class UserInterface {
         professorPage0 = new ProfessorPage0();
         professorViewMyCourses = new ProfessorViewMyCourses();
         professorViewMyCourse = new ProfessorViewMyCourse();
+        professorPageViewMyCourse = new ProfessorPageViewMyCourse();
 
         /** Student Accounts */
         studentPage0 = new StudentPage0();
@@ -409,7 +411,7 @@ public class UserInterface {
 
             case 2:
             professorViewMyCourse();
-            professorPage0();
+            professorPageViewMyCourse();
             break;
 /** 
             case 3:
@@ -434,6 +436,23 @@ public class UserInterface {
      */
     private void professorViewMyCourse() {
         professorViewMyCourse.viewMyCourse();
+    }
+
+    /**
+     * professorPageViewMyCourse()
+     */
+    private void professorPageViewMyCourse() {
+        professorPageViewMyCourse.displayTitle();
+        professorPageViewMyCourse.displayOptions();
+
+        switch(professorPageViewMyCourse.getSelection()) {
+            case 0:
+            break;
+
+            default:
+            wrongEntry();
+            professorPageViewMyCourse();
+        }
     }
 
     /**
