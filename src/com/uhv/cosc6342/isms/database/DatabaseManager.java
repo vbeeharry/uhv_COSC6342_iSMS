@@ -557,7 +557,52 @@ public class DatabaseManager implements Constants {
      * Add a course to a student
      */
     public void addStudentCourse(Student student, Course course) {
-        System.out.println("adding something");
+        boolean okToAdd = checkIfStudentCourseIdExists(student, course);
+        if (okToAdd) {
+            writeToStudentCourseFile(student, course);            
+        }
+        else {
+            System.out.println("Student has already regsitered for this course.");
+        }
+    }
+
+    /**
+     * Check if student course alreaadu registered
+     */
+    private boolean checkIfStudentCourseIdExists(Student student, Course course) {
+        crsc.readAll();
+
+        boolean result = true;
+        List studentCourseList = crsc.getStudentCourseList();
+
+        int i = 0;
+        for (Iterator iter = studentCourseList.iterator(); iter.hasNext();) {
+            String[] temp = (String[]) iter.next();
+            if (student.getUserId().equals(temp[0]) 
+                && course.getId().equals(temp[1])) {
+                result = false;
+                break;
+            }
+        }
+
+        return result;
+
+    }
+
+    /**
+     * Write to course file
+     */
+    private void writeToStudentCourseFile(Student student, Course course) {
+        try {
+            FileWriter fw = new FileWriter(STUDENT_COURSE_FILE, true);
+            BufferedWriter bw = new BufferedWriter(fw);
+            String str = student.getUserId() + "," + course.getId() + "\n";           
+            bw.write(str);
+            bw.flush();
+            bw.close();
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
     }
 
     /**

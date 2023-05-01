@@ -486,6 +486,7 @@ public class UserInterface {
 
             case 3:
             studentRegisterCourse();
+            studentRegisterForCourse();
             break;
 
             default:

@@ -58,6 +58,13 @@ public class CsvReaderStudentCourse {
     }
 
     /**
+     * Getter for studentCourseList
+     */
+    public List getStudentCourseList() {
+        return studentCourseList;
+    }
+
+    /**
      * Singleton instance
      */
     public static CsvReaderStudentCourse getInstance(String fileName) {

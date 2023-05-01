@@ -43,7 +43,7 @@ public class StudentRegisterCourse extends UIInterface {
         }
 
         if (!courseFound) {
-            debug.log("Course ID not found.");
+            debug.log("\nCourse ID not found. Course not registered.");
         }
     }
 }
