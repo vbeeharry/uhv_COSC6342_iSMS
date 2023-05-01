@@ -46,6 +46,8 @@ public class UserInterface {
     private StudentPage0 studentPage0;
     private StudentRegisterForCourse studentRegisterForCourse;
     private StudentViewAvailableCourses studentViewAvailableCourses;
+    private StudentRegisterCourse studentRegisterCourse;
+    private StudentDropCourse studentDropCourse;
 
     /**
      * Constructor
@@ -89,6 +91,8 @@ public class UserInterface {
         studentPage0 = new StudentPage0();
         studentRegisterForCourse = new StudentRegisterForCourse();
         studentViewAvailableCourses = new StudentViewAvailableCourses();
+        studentRegisterCourse = new StudentRegisterCourse();
+        studentDropCourse = new StudentDropCourse();
     }
 
     /**
@@ -448,6 +452,11 @@ public class UserInterface {
             studentPage0();
             break;
 
+            case 4:
+            studentDropCourse();
+            studentPage0();
+            break;
+
             default:
             wrongEntry();
             studentPage0();
@@ -475,6 +484,10 @@ public class UserInterface {
             studentRegisterForCourse();
             break;
 
+            case 3:
+            studentRegisterCourse();
+            break;
+
             default:
             wrongEntry();
             studentRegisterForCourse();
@@ -486,6 +499,20 @@ public class UserInterface {
      */
     private void studentViewAvailableCourses() {
         studentViewAvailableCourses.viewMyCourses();
+    }
+
+    /**
+     * studentRegisterCourse
+     */
+    private void studentRegisterCourse() {
+        studentRegisterCourse.registerCourse();
+    }
+
+    /**
+     * studentDropCourse
+     */
+    private void studentDropCourse() {
+        studentDropCourse.dropCourse();
     }
 
     private void wrongEntry() {

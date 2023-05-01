@@ -8,4 +8,5 @@ public interface Constants {
     public static String STUDENTS_FILE = "students.csv";
     public static String LOGGER_FILE = "logger.csv";
     public static String COURSES_FILE = "courses.csv";
+    public static String STUDENT_COURSE_FILE = "studentCourse.csv";
 }

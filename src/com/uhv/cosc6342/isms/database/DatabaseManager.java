@@ -7,10 +7,11 @@ import com.uhv.cosc6342.isms.users.Professor;
 import com.uhv.cosc6342.isms.users.Student;
 import com.uhv.cosc6342.isms.users.User;
 import com.uhv.cosc6342.isms.utils.Constants;
+import com.uhv.cosc6342.isms.utils.CsvReaderCourse;
 import com.uhv.cosc6342.isms.utils.CsvReaderUser;
 import com.uhv.cosc6342.isms.utils.CsvReaderProfessor;
 import com.uhv.cosc6342.isms.utils.CsvReaderStudent;
-import com.uhv.cosc6342.isms.utils.CsvReaderCourse;
+import com.uhv.cosc6342.isms.utils.CsvReaderStudentCourse;
 import com.uhv.cosc6342.isms.utils.CsvWriter;
 import com.uhv.cosc6342.isms.utils.Debug;
 
@@ -30,6 +31,7 @@ public class DatabaseManager implements Constants {
     private CsvReaderProfessor crp;
     private CsvReaderStudent crs;
     private CsvReaderCourse crc;
+    private CsvReaderStudentCourse crsc;
     private CsvWriter cw;
 
     private Debug debug;
@@ -53,6 +55,7 @@ public class DatabaseManager implements Constants {
         crp = CsvReaderProfessor.getInstance(PROFESSORS_FILE); crp.readAll();
         crs = CsvReaderStudent.getInstance(STUDENTS_FILE); crs.readAll();
         crc = CsvReaderCourse.getInstance(COURSES_FILE); crc.readAll();
+        crsc = CsvReaderStudentCourse.getInstance(STUDENT_COURSE_FILE); crsc.readAll();
         cw = CsvWriter.getInstance();
 
         try {
@@ -548,6 +551,20 @@ public class DatabaseManager implements Constants {
 
         cw.writeAllCourses(COURSES_FILE, temp);
         debug.log("Course has been deleted");
+    }
+
+    /**
+     * Add a course to a student
+     */
+    public void addStudentCourse(Student student, Course course) {
+        System.out.println("adding something");
+    }
+
+    /**
+     * Drop a course to a student
+     */
+    public void dropStudentCourse(Student student, Course course) {
+        System.out.println("dropping something");
     }
 
     /**
