@@ -46,6 +46,7 @@ public class UserInterface {
     private StudentPage0 studentPage0;
     private StudentRegisterForCourse studentRegisterForCourse;
     private StudentViewAvailableCourses studentViewAvailableCourses;
+    private StudentViewMyCourses studentViewMyCourses;
     private StudentRegisterCourse studentRegisterCourse;
     private StudentDropCourse studentDropCourse;
 
@@ -91,6 +92,7 @@ public class UserInterface {
         studentPage0 = new StudentPage0();
         studentRegisterForCourse = new StudentRegisterForCourse();
         studentViewAvailableCourses = new StudentViewAvailableCourses();
+        studentViewMyCourses = new StudentViewMyCourses();
         studentRegisterCourse = new StudentRegisterCourse();
         studentDropCourse = new StudentDropCourse();
     }
@@ -436,12 +438,13 @@ public class UserInterface {
             case 0:
             System.exit(0);
             break;
-/**
+
             case 1:
-            professorViewMyCourses();
-            professorPage0();
+            studentViewMyCourses();
+            studentPage0();
             break;
 
+            /**
 
             case 2:
             adminPage2();
@@ -461,6 +464,13 @@ public class UserInterface {
             wrongEntry();
             studentPage0();
         }
+    }
+
+    /**
+     * studentViewMyCourses
+     */
+    private void studentViewMyCourses() {
+        studentViewMyCourses.viewMyCourses();
     }
 
     /**
