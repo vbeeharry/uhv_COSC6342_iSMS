@@ -53,6 +53,7 @@ public class UserInterface {
     private StudentViewMyCourses studentViewMyCourses;
     private StudentRegisterCourse studentRegisterCourse;
     private StudentDropCourse studentDropCourse;
+    private StudentViewMyCourse studentViewMyCourse;
 
     /**
      * Constructor
@@ -103,6 +104,7 @@ public class UserInterface {
         studentViewMyCourses = new StudentViewMyCourses();
         studentRegisterCourse = new StudentRegisterCourse();
         studentDropCourse = new StudentDropCourse();
+        studentViewMyCourse = new StudentViewMyCourse();
     }
 
     /**
@@ -507,12 +509,11 @@ public class UserInterface {
             studentPage0();
             break;
 
-            /**
-
             case 2:
-            adminPage2();
+            studentViewMyCourse();
+            studentPage0();
             break;
-*/
+
             case 3:
             studentRegisterForCourse();
             studentPage0();
@@ -534,6 +535,13 @@ public class UserInterface {
      */
     private void studentViewMyCourses() {
         studentViewMyCourses.viewMyCourses();
+    }
+
+    /**
+     * studentViewMyCourse
+     */
+    private void studentViewMyCourse() {
+        studentViewMyCourse.viewMyCourse();
     }
 
     /**

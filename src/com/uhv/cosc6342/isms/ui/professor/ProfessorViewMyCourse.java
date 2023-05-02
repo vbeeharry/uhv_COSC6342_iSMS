@@ -7,10 +7,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import javax.swing.JFileChooser;
-import javax.swing.filechooser.FileNameExtensionFilter;
 /**
  */
 public class ProfessorViewMyCourse extends UIInterface {
