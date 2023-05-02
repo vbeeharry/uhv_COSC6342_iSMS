@@ -1,7 +1,7 @@
 package com.uhv.cosc6342.isms.utils;
 
-import com.uhv.cosc6342.isms.courses.Course;
-import com.uhv.cosc6342.isms.users.User;
+import com.uhv.cosc6342.isms.accountSubsystem.User;
+import com.uhv.cosc6342.isms.courseSubsystem.Course;
 
 import java.io.BufferedWriter;
 import java.io.File;

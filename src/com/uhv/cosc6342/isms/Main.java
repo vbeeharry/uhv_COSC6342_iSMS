@@ -1,8 +1,8 @@
 package com.uhv.cosc6342.isms;
 
-import com.uhv.cosc6342.isms.database.DatabaseManager;
-import com.uhv.cosc6342.isms.login.Logger;
-import com.uhv.cosc6342.isms.ui.UserInterface;
+import com.uhv.cosc6342.isms.controller.UserInterface;
+import com.uhv.cosc6342.isms.databaseSubsystem.DatabaseManager;
+import com.uhv.cosc6342.isms.loginSubsystem.Logger;
 import com.uhv.cosc6342.isms.utils.Debug;
 
 /**

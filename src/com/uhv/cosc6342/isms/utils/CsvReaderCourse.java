@@ -3,14 +3,14 @@
  */
  package com.uhv.cosc6342.isms.utils;
 
-import com.uhv.cosc6342.isms.courses.Course;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.uhv.cosc6342.isms.courseSubsystem.Course;
 
 /**
  * Class to read csv files
