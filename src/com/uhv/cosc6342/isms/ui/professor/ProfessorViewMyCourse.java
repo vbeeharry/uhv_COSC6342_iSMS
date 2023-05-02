@@ -7,6 +7,10 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 /**
  */
 public class ProfessorViewMyCourse extends UIInterface {
@@ -49,6 +53,7 @@ public class ProfessorViewMyCourse extends UIInterface {
                 System.out.println("Room: " + course.getRoom());
                 System.out.println("Start Date: " + course.getStartDate());
                 System.out.println("End Date: " + course.getEndDate());
+                System.out.println("Syllabus Added: " + course.getSyllabusAdded());
                 System.out.println("\n\n");
                 selectedCourseId = id;
             }

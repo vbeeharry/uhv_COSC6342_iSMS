@@ -43,6 +43,7 @@ public class ProfessorViewMyCourses extends UIInterface {
                 System.out.println("Room: " + course.getRoom());
                 System.out.println("Start Date: " + course.getStartDate());
                 System.out.println("End Date: " + course.getEndDate());
+                System.out.println("Syllabus Added: " + course.getSyllabusAdded());
                 System.out.println("\n\n");
             }
         }

@@ -44,6 +44,7 @@ public class UserInterface {
     private ProfessorViewMyCourse professorViewMyCourse;
     private ProfessorPageViewMyCourse professorPageViewMyCourse;
     private ProfessorViewStudents professorViewStudents;
+    private ProfessorAddSyllabus professorAddSyllabus;
 
     /** Student Accounts */
     private StudentPage0 studentPage0;
@@ -93,6 +94,7 @@ public class UserInterface {
         professorViewMyCourse = new ProfessorViewMyCourse();
         professorPageViewMyCourse = new ProfessorPageViewMyCourse();
         professorViewStudents = new ProfessorViewStudents();
+        professorAddSyllabus = new ProfessorAddSyllabus();
 
         /** Student Accounts */
         studentPage0 = new StudentPage0();
@@ -417,7 +419,7 @@ public class UserInterface {
                 professorPageViewMyCourse(courseId);
             }
             break;
-/** 
+/**
             case 3:
             adminPage3();
             break;
@@ -459,6 +461,11 @@ public class UserInterface {
             break;
 
             case 2:
+            professorAddSyllabus(courseId);
+            professorPageViewMyCourse(courseId);
+            break;
+
+            case 3:
             professorViewStudents(courseId);
             professorPageViewMyCourse(courseId);
             break;
@@ -467,6 +474,13 @@ public class UserInterface {
             wrongEntry();
             professorPageViewMyCourse(courseId);
         }
+    }
+
+    /**
+     * professorAddSyllabus
+     */
+    private void professorAddSyllabus(String courseId) {
+        professorAddSyllabus.addSyllabus(courseId);
     }
 
     /**

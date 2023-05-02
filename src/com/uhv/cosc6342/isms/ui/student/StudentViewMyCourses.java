@@ -65,6 +65,7 @@ public class StudentViewMyCourses extends UIInterface {
                         System.out.println("Start Date: " + course.getStartDate());
                         System.out.println("End Date: " + course.getEndDate());
                         System.out.println("Professor ID: " + course.getProfessorId());
+                        System.out.println("Syllabus Added: " + course.getSyllabusAdded());
                         System.out.println("\n\n");  
                     }
                 }

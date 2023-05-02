@@ -23,6 +23,7 @@ public class Course {
     private String startDate;
     private String endDate;
     private String professorId;
+    private String syllabusAdded;
 
     private CsvReaderProfessor crp;
 
@@ -47,6 +48,7 @@ public class Course {
         this.startDate = temp[7];
         this.endDate = temp[8];
         this.professorId = crp.getProfessorId(temp[9]);
+        this.syllabusAdded = "No";
     }
 
     public String getName() {
@@ -92,5 +94,9 @@ public class Course {
 
     public String getProfessorId() {
         return professorId;
+    }
+
+    public String getSyllabusAdded() {
+        return syllabusAdded;
     }
 }

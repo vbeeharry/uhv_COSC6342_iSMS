@@ -102,7 +102,8 @@ public class CsvWriter {
                     + temp.getDay() + "," + temp.getNumOfSeatsTotal() + ","
                     + temp.getNumOfSeatsTaken() + "," + temp.getNumOfSeatsAvailable() + ","
                     + temp.getInstructionMode() + "," + temp.getRoom() + ","
-                    + temp.getStartDate() + "," + temp.getEndDate();
+                    + temp.getStartDate() + "," + temp.getEndDate() + ","
+                    + temp.getSyllabusAdded();
 
                 bw.write(str + "\n");
             }
