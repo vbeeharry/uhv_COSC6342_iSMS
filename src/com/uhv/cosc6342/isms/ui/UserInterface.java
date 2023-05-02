@@ -54,6 +54,8 @@ public class UserInterface {
     private StudentRegisterCourse studentRegisterCourse;
     private StudentDropCourse studentDropCourse;
     private StudentViewMyCourse studentViewMyCourse;
+    private StudentPageViewMyCourse studentPageViewMyCourse;
+    private StudentViewSyllabus studentViewSyllabus;
 
     /**
      * Constructor
@@ -105,6 +107,8 @@ public class UserInterface {
         studentRegisterCourse = new StudentRegisterCourse();
         studentDropCourse = new StudentDropCourse();
         studentViewMyCourse = new StudentViewMyCourse();
+        studentPageViewMyCourse = new StudentPageViewMyCourse();
+        studentViewSyllabus = new StudentViewSyllabus();
     }
 
     /**
@@ -510,8 +514,8 @@ public class UserInterface {
             break;
 
             case 2:
-            studentViewMyCourse();
-            studentPage0();
+            String courseId = studentViewMyCourse();
+            studentPageViewMyCourse(courseId);
             break;
 
             case 3:
@@ -540,8 +544,35 @@ public class UserInterface {
     /**
      * studentViewMyCourse
      */
-    private void studentViewMyCourse() {
-        studentViewMyCourse.viewMyCourse();
+    private String studentViewMyCourse() {
+        return studentViewMyCourse.viewMyCourse();
+    }
+
+    /**
+     * studentPageViewMyCourse
+     */
+    private void studentPageViewMyCourse(String courseId) {
+        studentPageViewMyCourse.displayTitle();
+        studentPageViewMyCourse.displayOptions();
+
+        switch(studentPageViewMyCourse.getSelection()) {
+            case 0:
+            System.exit(0);
+            break;
+
+            case 1:
+            studentPage0();
+            break;
+
+            case 2:
+            studentViewSyllabus(courseId);
+            studentPageViewMyCourse(courseId);
+            break;
+
+            default:
+            wrongEntry();
+            studentPageViewMyCourse(courseId);
+        }
     }
 
     /**
@@ -574,6 +605,13 @@ public class UserInterface {
             wrongEntry();
             studentRegisterForCourse();
         }
+    }
+
+    /**
+     * studentViewSyllabus
+     */
+    private void studentViewSyllabus(String courseId) {
+        studentViewSyllabus.viewSyllabus(courseId);
     }
 
     /**

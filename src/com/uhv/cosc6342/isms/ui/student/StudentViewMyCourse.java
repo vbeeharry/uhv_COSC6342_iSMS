@@ -21,9 +21,11 @@ public class StudentViewMyCourse extends UIInterface {
     }
 
     /**
-     * Register a course
+     * View a course
      */
-    public void viewMyCourse() {
+    public String viewMyCourse() {
+        String selectedCourseId = null;
+
         List temp = crsc.readAll();
         Student student = (Student) lm.getActiveUser();
 
@@ -67,8 +69,11 @@ public class StudentViewMyCourse extends UIInterface {
                     System.out.println("Professor ID: " + course.getProfessorId());
                     System.out.println("Syllabus Added: " + course.getSyllabusAdded());
                     System.out.println("\n\n");  
+                    selectedCourseId = id;
                 }
             }   
         }
+
+        return selectedCourseId;
     }
 }
