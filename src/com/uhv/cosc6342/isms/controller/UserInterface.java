@@ -515,7 +515,8 @@ public class UserInterface {
 
             case 2:
             String courseId = studentViewMyCourse();
-            studentPageViewMyCourse(courseId);
+            if (courseId != null) { studentPageViewMyCourse(courseId); }
+            else { studentPage0(); }
             break;
 
             case 3:
