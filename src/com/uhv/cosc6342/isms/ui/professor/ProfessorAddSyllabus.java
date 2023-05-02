@@ -20,7 +20,7 @@ public class ProfessorAddSyllabus extends UIInterface {
      */
     public void addSyllabus(String courseId) {
         fc.execute();
-        fc.display();
+        fc.display(courseId + "_syllabus.syl");
         System.out.println("\nSyllabus has now been added");
     }
 }

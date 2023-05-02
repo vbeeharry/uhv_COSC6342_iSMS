@@ -1,5 +1,7 @@
 package com.uhv.cosc6342.isms.utils;
 
+import com.uhv.cosc6342.isms.utils.WriteAFile;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import javax.swing.JFileChooser;
@@ -25,18 +27,24 @@ public class FileChooser {
         int returnVal = chooser.showOpenDialog(null);
         if(returnVal == JFileChooser.APPROVE_OPTION) {
             try {
-                inputFile= new Scanner(new File(chooser.getSelectedFile().getAbsolutePath()));
+                inputFile = new Scanner(new File(chooser.getSelectedFile().getAbsolutePath()));
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
         }
     } 
 
-    public void display() {
+    public void display(String fileName) {
+        WriteAFile waf = new WriteAFile(fileName);
+
         System.out.println("\n");
         while(inputFile.hasNextLine()) {
             String line = inputFile.next();
+            waf.write(line);
             System.out.println(line);
         }
+
+        inputFile.close();
+        waf.close();
     }
 }

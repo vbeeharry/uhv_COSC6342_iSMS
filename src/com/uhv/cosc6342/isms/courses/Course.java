@@ -7,6 +7,8 @@ package com.uhv.cosc6342.isms.courses;
 import com.uhv.cosc6342.isms.users.Professor;
 import com.uhv.cosc6342.isms.utils.CsvReaderProfessor;
 
+import java.io.File;
+
 /**
  * This represents a course object
  */
@@ -48,7 +50,9 @@ public class Course {
         this.startDate = temp[7];
         this.endDate = temp[8];
         this.professorId = crp.getProfessorId(temp[9]);
-        this.syllabusAdded = "No";
+
+        File syllabusFile = new File(id + "_syllabus.syl");
+        this.syllabusAdded = syllabusFile.exists() ? "Yes" : "No";
     }
 
     public String getName() {
@@ -98,5 +102,9 @@ public class Course {
 
     public String getSyllabusAdded() {
         return syllabusAdded;
+    }
+
+    public void setSyllabusAdded(boolean value) {
+        syllabusAdded = value ? "Yes" : "No";
     }
 }
