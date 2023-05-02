@@ -557,13 +557,15 @@ public class DatabaseManager implements Constants {
      * Add a course to a student
      */
     public void addStudentCourse(Student student, Course course) {
-        boolean okToAdd = checkIfStudentCourseIdExists(student, course);
+        boolean okToAdd = checkIfStudentCourseIdExists(student, course)
+            && seatsAvailable(course);
+
         if (okToAdd) {
             writeToStudentCourseFile(student, course);
             debug.log("\nCourse has been registere.");
         }
         else {
-            System.out.println("Student has already regsitered for this course.");
+            System.out.println("Course has not been registered.");
         }
     }
 
@@ -587,7 +589,20 @@ public class DatabaseManager implements Constants {
         }
 
         return result;
+    }
 
+    /**
+     * Check seats available
+     */
+    private boolean seatsAvailable(Course course) {
+        boolean result = true;
+
+        if (course.getNumOfSeatsAvailable() <= 0) {
+            result = false;
+            System.out.println("No seats available for this course.");
+        }
+
+        return result;
     }
 
     /**
