@@ -3,10 +3,10 @@
  */
 package com.uhv.cosc6342.isms.utils;
 
-import com.uhv.cosc6342.isms.accountSubsystem.Admin;
-import com.uhv.cosc6342.isms.accountSubsystem.Professor;
-import com.uhv.cosc6342.isms.accountSubsystem.Student;
-import com.uhv.cosc6342.isms.accountSubsystem.User;
+import com.uhv.cosc6342.isms.enrolmentSubsystem.Admin;
+import com.uhv.cosc6342.isms.enrolmentSubsystem.Professor;
+import com.uhv.cosc6342.isms.enrolmentSubsystem.Student;
+import com.uhv.cosc6342.isms.enrolmentSubsystem.User;
 import com.uhv.cosc6342.isms.utils.Debug;
 
 import java.io.BufferedReader;

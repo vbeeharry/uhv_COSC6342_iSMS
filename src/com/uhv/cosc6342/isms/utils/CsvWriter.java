@@ -1,7 +1,7 @@
 package com.uhv.cosc6342.isms.utils;
 
-import com.uhv.cosc6342.isms.accountSubsystem.User;
 import com.uhv.cosc6342.isms.courseSubsystem.Course;
+import com.uhv.cosc6342.isms.enrolmentSubsystem.User;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -98,9 +98,9 @@ public class CsvWriter {
 
             for (Iterator iter = data.iterator(); iter.hasNext();) {
                 Course temp = (Course) iter.next();
-                String str = temp.getId() + "," + temp.getName() + ","
+                String str = temp.getCourseID() + "," + temp.getName() + ","
                     + temp.getDay() + "," + temp.getNumOfSeatsTotal() + ","
-                    + temp.getNumOfSeatsTaken() + "," + temp.getNumOfSeatsAvailable() + ","
+                    + temp.getNumOfSeatsTaken() + "," + temp.getNumOfAvailableSeats() + ","
                     + temp.getInstructionMode() + "," + temp.getRoom() + ","
                     + temp.getStartDate() + "," + temp.getEndDate() + ","
                     + temp.getProfessorId() + "," + temp.getSyllabusAdded();

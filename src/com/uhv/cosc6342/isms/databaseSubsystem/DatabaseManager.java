@@ -1,10 +1,10 @@
 package com.uhv.cosc6342.isms.databaseSubsystem;
 
-import com.uhv.cosc6342.isms.accountSubsystem.Admin;
-import com.uhv.cosc6342.isms.accountSubsystem.Professor;
-import com.uhv.cosc6342.isms.accountSubsystem.Student;
-import com.uhv.cosc6342.isms.accountSubsystem.User;
 import com.uhv.cosc6342.isms.courseSubsystem.Course;
+import com.uhv.cosc6342.isms.enrolmentSubsystem.Admin;
+import com.uhv.cosc6342.isms.enrolmentSubsystem.Professor;
+import com.uhv.cosc6342.isms.enrolmentSubsystem.Student;
+import com.uhv.cosc6342.isms.enrolmentSubsystem.User;
 import com.uhv.cosc6342.isms.loginSubsystem.PasswordGenerator;
 import com.uhv.cosc6342.isms.utils.Constants;
 import com.uhv.cosc6342.isms.utils.CsvReaderCourse;
@@ -457,7 +457,7 @@ public class DatabaseManager implements Constants {
 
         for (Iterator iter = course.iterator(); iter.hasNext();) {
             Course tempCourse = (Course) iter.next();
-            if (tempCourse.getId().equals(temp[0])) {
+            if (tempCourse.getCourseID().equals(temp[0])) {
                 result = false;
                 break;
             }
@@ -473,7 +473,7 @@ public class DatabaseManager implements Constants {
         try {
             FileWriter fw = new FileWriter(COURSES_FILE, true);
             BufferedWriter bw = new BufferedWriter(fw);
-            String str = course.getId() + ","
+            String str = course.getCourseID() + ","
                 + course.getName() + ","
                 + course.getDay() + ","
                 + course.getNumOfSeatsTotal() + ","
@@ -519,7 +519,7 @@ public class DatabaseManager implements Constants {
         int i = 0;
         for (Iterator iter = course.iterator(); iter.hasNext();) {
             Course tempCourse = (Course) iter.next();
-            if (tempCourse.getId().equals(id)) {
+            if (tempCourse.getCourseID().equals(id)) {
                 result = i;
                 break;
             }
@@ -582,7 +582,7 @@ public class DatabaseManager implements Constants {
         for (Iterator iter = studentCourseList.iterator(); iter.hasNext();) {
             String[] temp = (String[]) iter.next();
             if (student.getUserId().equals(temp[0]) 
-                && course.getId().equals(temp[1])) {
+                && course.getCourseID().equals(temp[1])) {
                 result = false;
                 break;
             }
@@ -597,7 +597,7 @@ public class DatabaseManager implements Constants {
     private boolean seatsAvailable(Course course) {
         boolean result = true;
 
-        if (course.getNumOfSeatsAvailable() <= 0) {
+        if (course.getNumOfAvailableSeats() <= 0) {
             result = false;
             System.out.println("No seats available for this course.");
         }
@@ -612,7 +612,7 @@ public class DatabaseManager implements Constants {
         try {
             FileWriter fw = new FileWriter(STUDENT_COURSE_FILE, true);
             BufferedWriter bw = new BufferedWriter(fw);
-            String str = student.getUserId() + "," + course.getId() + "\n";           
+            String str = student.getUserId() + "," + course.getCourseID() + "\n";           
             bw.write(str);
             bw.flush();
             bw.close();
@@ -632,7 +632,7 @@ public class DatabaseManager implements Constants {
 
         for (Iterator iter = courseList.iterator(); iter.hasNext();) {
             Course temp = (Course) iter.next();
-            if (temp.getId().equals(course.getId())) {
+            if (temp.getCourseID().equals(course.getCourseID())) {
                 temp.incrementSeatsTaken();
                 break;
             }
@@ -676,7 +676,7 @@ public class DatabaseManager implements Constants {
         int i = 0;
         for (Iterator iter = studentCourseList.iterator(); iter.hasNext();) {
             String[] temp = (String[]) iter.next();
-            if (temp[0].equals(student.getUserId()) && temp[1].equals(course.getId())) {
+            if (temp[0].equals(student.getUserId()) && temp[1].equals(course.getCourseID())) {
                 result = i;
                 break;
             }

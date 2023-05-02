@@ -4,7 +4,7 @@
 
 package com.uhv.cosc6342.isms.loginSubsystem;
 
-import com.uhv.cosc6342.isms.accountSubsystem.User;
+import com.uhv.cosc6342.isms.enrolmentSubsystem.User;
 import com.uhv.cosc6342.isms.utils.CsvReaderUser;
 
 import java.util.ArrayList;

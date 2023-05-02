@@ -4,7 +4,7 @@
 
 package com.uhv.cosc6342.isms.courseSubsystem;
 
-import com.uhv.cosc6342.isms.accountSubsystem.Professor;
+import com.uhv.cosc6342.isms.enrolmentSubsystem.Professor;
 import com.uhv.cosc6342.isms.utils.CsvReaderProfessor;
 
 import java.io.File;
@@ -71,7 +71,7 @@ public class Course {
         return numOfSeatsTaken;
     }
 
-    public int getNumOfSeatsAvailable() {
+    public int getNumOfAvailableSeats() {
         numOfSeatsAvailable = numOfSeatsTotal - numOfSeatsTaken;
         return numOfSeatsAvailable;
     }
@@ -92,7 +92,7 @@ public class Course {
         return endDate;
     }
 
-    public String getId() {
+    public String getCourseID() {
         return id;
     }
 

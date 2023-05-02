@@ -1,9 +1,9 @@
 package com.uhv.cosc6342.isms.controller;
 
-import com.uhv.cosc6342.isms.accountSubsystem.User;
-import com.uhv.cosc6342.isms.controller.admin.*;
-import com.uhv.cosc6342.isms.controller.professor.*;
-import com.uhv.cosc6342.isms.controller.student.*;
+import com.uhv.cosc6342.isms.accountSubsystem.admin.*;
+import com.uhv.cosc6342.isms.accountSubsystem.professor.*;
+import com.uhv.cosc6342.isms.accountSubsystem.student.*;
+import com.uhv.cosc6342.isms.enrolmentSubsystem.User;
 import com.uhv.cosc6342.isms.loginSubsystem.LoginManagement;
 
 /**
