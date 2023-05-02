@@ -601,9 +601,40 @@ public class DatabaseManager implements Constants {
             bw.write(str);
             bw.flush();
             bw.close();
+
+            updateCourseSeating(course);
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }
+    }
+
+    /**
+     * updateCourseSeating
+     */
+    private void updateCourseSeating(Course course) {
+       // crc.readAll();
+       List courseList = crc.getCourseList();
+
+        for (Iterator iter = courseList.iterator(); iter.hasNext();) {
+            Course temp = (Course) iter.next();
+            if (temp.getId().equals(course.getId())) {
+                temp.incrementSeatsTaken();
+                break;
+            }
+        }
+
+        List newCourseList = courseList;
+        try {
+            File file = new File(COURSES_FILE);
+            FileWriter fw = new FileWriter(file, false);
+            PrintWriter pw = new PrintWriter(fw, false);
+            pw.flush();
+            pw.close();
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
+
+        cw.writeAllCourses(COURSES_FILE, newCourseList);
     }
 
     /**

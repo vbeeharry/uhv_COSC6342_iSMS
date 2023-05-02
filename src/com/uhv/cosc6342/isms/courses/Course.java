@@ -44,12 +44,12 @@ public class Course {
         this.day = temp[2];
         this.numOfSeatsTotal = Integer.parseInt(temp[3]);
         this.numOfSeatsTaken = Integer.parseInt(temp[4]);
-        this.numOfSeatsAvailable = numOfSeatsTotal - numOfSeatsTaken;
-        this.instructionMode = temp[5];
-        this.room = temp[6];
-        this.startDate = temp[7];
-        this.endDate = temp[8];
-        this.professorId = crp.getProfessorId(temp[9]);
+        this.numOfSeatsAvailable =Integer.parseInt(temp[5]);// numOfSeatsTotal - numOfSeatsTaken;
+        this.instructionMode = temp[6];
+        this.room = temp[7];
+        this.startDate = temp[8];
+        this.endDate = temp[9];
+        this.professorId = crp.getProfessorId(temp[10]);
 
         File syllabusFile = new File(id + "_syllabus.syl");
         this.syllabusAdded = syllabusFile.exists() ? "Yes" : "No";
@@ -106,5 +106,9 @@ public class Course {
 
     public void setSyllabusAdded(boolean value) {
         syllabusAdded = value ? "Yes" : "No";
+    }
+
+    public void incrementSeatsTaken() {
+        numOfSeatsTaken++;
     }
 }
