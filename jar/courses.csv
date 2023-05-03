@@ -1,6 +1,5 @@
-cs1000,computer,monday,40,12,28,online,na,10Jan,3Mar,100,No
-ma1000,maths,tuesday,30,6,24,class,405,10Jan,5Mar,101,No
-ph1000,physics,wednesday,20,6,14,hybrid,223,12Feb,4Apr,102,No
-sc1000,science,thursday,55,55,0,online,231,5Feb,6Mar,101,No
-sc1001,science2,friday,45,0,45,class,234,4Feb,7Mar,102,No
-ch1020,chemistry,saturday,20,0,20,online,na,4Feb,6Mar,102,Yes
+CS1000,Computer,Tuesday,45,0,45,45,Class,405,5Feb,NotAssigned,No
+MA1000,Maths,Wednesday,30,0,30,30,Online,na,3Jan,NotAssigned,No
+BL1000,Biology,Friday,20,0,20,20,Hybrid,304,8Feb,NotAssigned,No
+PH1000,Physics,Friday,45,0,45,Online,na,4Jan,9Apr,20000002,No
+CH1000,Chemistry,Monday,40,0,Online,na,3Feb,9Apr,20000003

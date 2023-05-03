@@ -234,6 +234,7 @@ public class DatabaseManager implements Constants {
      */
     private boolean checkIfIdExists(CsvReaderUser cru, String[] temp) {
         boolean result = true;
+        cru.readAll();
         List user = cru.getUserList();
 
         for (Iterator iter = user.iterator(); iter.hasNext();) {
@@ -597,7 +598,7 @@ public class DatabaseManager implements Constants {
     private boolean seatsAvailable(Course course) {
         boolean result = true;
 
-        if (course.getNumOfAvailableSeats() <= 0) {
+        if (Integer.parseInt(course.getNumOfAvailableSeats()) <= 0) {
             result = false;
             System.out.println("No seats available for this course.");
         }

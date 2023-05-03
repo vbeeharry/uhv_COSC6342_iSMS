@@ -78,7 +78,7 @@ public abstract class UIInterface {
      * Enter User ID
      */
     public String getUserId() {
-        System.out.println("Enter user id: ");
+        System.out.println("Enter user id (8 Characters): ");
         Scanner in = new Scanner(System.in);
         String userId = in.next();
         return userId;

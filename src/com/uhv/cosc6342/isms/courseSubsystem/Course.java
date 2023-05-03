@@ -17,9 +17,9 @@ public class Course {
     private String id;
     private String name;
     private String day;
-    private int numOfSeatsTotal;
-    private int numOfSeatsTaken;
-    private int numOfSeatsAvailable;
+    private String numOfSeatsTotal;
+    private String numOfSeatsTaken;
+    private String numOfSeatsAvailable;
     private String instructionMode;
     private String room;
     private String startDate;
@@ -42,14 +42,14 @@ public class Course {
         this.id = temp[0];
         this.name = temp[1];
         this.day = temp[2];
-        this.numOfSeatsTotal = Integer.parseInt(temp[3]);
-        this.numOfSeatsTaken = Integer.parseInt(temp[4]);
-        this.numOfSeatsAvailable =Integer.parseInt(temp[5]);// numOfSeatsTotal - numOfSeatsTaken;
-        this.instructionMode = temp[6];
-        this.room = temp[7];
-        this.startDate = temp[8];
-        this.endDate = temp[9];
-        this.professorId = crp.getProfessorId(temp[10]);
+        this.numOfSeatsTotal = temp[3];
+        this.numOfSeatsTaken = temp[4];
+        this.numOfSeatsAvailable = Integer.toString(0);//Integer.parseInt(temp[5]);// numOfSeatsTotal - numOfSeatsTaken;
+        this.instructionMode = temp[5];
+        this.room = temp[6];
+        this.startDate = temp[7];
+        this.endDate = temp[8];
+        this.professorId = crp.getProfessorId(temp[9]);
 
         File syllabusFile = new File(id + "_syllabus.syl");
         this.syllabusAdded = syllabusFile.exists() ? "Yes" : "No";
@@ -63,16 +63,17 @@ public class Course {
         return day;
     }
 
-    public int getNumOfSeatsTotal() {
+    public String getNumOfSeatsTotal() {
         return numOfSeatsTotal;
     }
 
-    public int getNumOfSeatsTaken() {
+    public String getNumOfSeatsTaken() {
         return numOfSeatsTaken;
     }
 
-    public int getNumOfAvailableSeats() {
-        numOfSeatsAvailable = numOfSeatsTotal - numOfSeatsTaken;
+    public String getNumOfAvailableSeats() {
+        numOfSeatsAvailable = Integer.toString(
+                Integer.parseInt(numOfSeatsTotal) - Integer.parseInt(numOfSeatsTaken));
         return numOfSeatsAvailable;
     }
 
@@ -109,6 +110,6 @@ public class Course {
     }
 
     public void incrementSeatsTaken() {
-        numOfSeatsTaken++;
+        numOfSeatsTaken = Integer.toString(Integer.parseInt(numOfSeatsTaken) + 1);
     }
 }

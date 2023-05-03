@@ -30,12 +30,18 @@ public class AdminPageAddStudent extends UIInterface {
         temp[1] = in.next();
         System.out.println("Enter Email: ");
         temp[2] = in.next();
-        System.out.println("User ID: " );
+        System.out.println("User ID (8 Characters): " );
         temp[3] = in.next();
         System.out.println("Enter password: ");
         temp[4] = in.next();
         temp[5] = "student";
 
-        dm.addStudent(temp);
+        
+        if (temp[3].length() != 8) {
+            System.out.println("\nUser ID not accepted.");
+        }
+        else {
+            dm.addStudent(temp);
+        }
     }
 }

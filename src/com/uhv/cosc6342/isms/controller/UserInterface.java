@@ -149,18 +149,24 @@ public class UserInterface {
         signInPage.displayTitle();
         String userId = signInPage.getUserId();
         String password = signInPage.getPassword();
-        
-        if (lm.isAuthorized(userId, password)) {
-            System.out.println("\nUser is authorized");
-            activeUser = lm.getActiveUser();
-            System.out.println("User info: " + activeUser + "\n");
-            if (activeUser.getRole().equalsIgnoreCase("Admin")) adminPage0();
-            else if (activeUser.getRole().equalsIgnoreCase("Professor")) professorPage0();
-            else if (activeUser.getRole().equalsIgnoreCase("Student")) studentPage0();
+
+        if (userId.length() != 8) {
+            System.out.println("\nUser ID not accepted.");
+            welcome();
         }
         else {
-            System.out.println("\nUser is not registered.\n");
-            welcome();
+            if (lm.isAuthorized(userId, password)) {
+                System.out.println("\nUser is authorized");
+                activeUser = lm.getActiveUser();
+                System.out.println("User info: " + activeUser + "\n");
+                if (activeUser.getRole().equalsIgnoreCase("Admin")) adminPage0();
+                else if (activeUser.getRole().equalsIgnoreCase("Professor")) professorPage0();
+                else if (activeUser.getRole().equalsIgnoreCase("Student")) studentPage0();
+            }
+            else {
+                System.out.println("\nUser is not registered.\n");
+                welcome();
+            }
         }
     }
 
