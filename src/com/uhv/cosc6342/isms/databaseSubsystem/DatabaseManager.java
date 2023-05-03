@@ -479,6 +479,7 @@ public class DatabaseManager implements Constants {
                 + course.getDay() + ","
                 + course.getNumOfSeatsTotal() + ","
                 + course.getNumOfSeatsTaken() + ","
+                + course.getNumOfAvailableSeats() + ","
                 + course.getInstructionMode() + ","
                 + course.getRoom() + ","
                 + course.getStartDate() + ","

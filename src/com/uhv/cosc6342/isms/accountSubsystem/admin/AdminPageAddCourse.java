@@ -14,7 +14,7 @@ public class AdminPageAddCourse extends UIInterface {
      */
     protected void init() {
         title = "Admin - Add a Course";
-        temp = new String[10];
+        temp = new String[11];
     }
 
     /**
@@ -33,16 +33,17 @@ public class AdminPageAddCourse extends UIInterface {
         System.out.println("Enter Total Seats Available: " );
         temp[3] = in.next();
         temp[4] = Integer.toString(0);
+        temp[5] = temp[3];
         System.out.println("Enter Instruction Mode: ");
-        temp[5] = in.next();
-        System.out.println("Enter Room number: ");
         temp[6] = in.next();
-        System.out.println("Enter Start date: " );
+        System.out.println("Enter Room number: ");
         temp[7] = in.next();
-        System.out.println("Enter End date: " );
+        System.out.println("Enter Start date: " );
         temp[8] = in.next();
-        System.out.println("Enter Professor id: ");
+        System.out.println("Enter End date: " );
         temp[9] = in.next();
+        System.out.println("Enter Professor id: ");
+        temp[10] = in.next();
         
         dm.addCourse(temp);
     }
